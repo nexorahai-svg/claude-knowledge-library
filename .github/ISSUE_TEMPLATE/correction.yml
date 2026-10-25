@@ -1,0 +1,25 @@
+name: Report an error or outdated fact
+description: A price, licence, version or claim in the library is wrong or out of date
+title: "[Fix] "
+labels: ["correction"]
+body:
+  - type: input
+    id: where
+    attributes:
+      label: File or card
+      placeholder: "catalog/elevenlabs-tts.md"
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What is wrong, and what is correct
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: Primary source link
+      description: Official docs, pricing page, licence file or release notes
+    validations:
+      required: true

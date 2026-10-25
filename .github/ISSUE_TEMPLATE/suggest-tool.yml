@@ -1,0 +1,38 @@
+name: Suggest a tool
+description: Propose a tool, model, plugin, MCP server or skill for the library
+title: "[Tool] "
+labels: ["tool-suggestion"]
+body:
+  - type: input
+    id: name
+    attributes:
+      label: Tool name and official link
+      placeholder: "Example: Kling 4.0 — https://kling.ai"
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options: [Apps, Websites, Social content (video / image / voice / music), Claude Code (plugins, MCP, skills), Other]
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Why it is worth a card
+      description: What it does better than what the library already lists. Primary sources (docs, pricing, licence) help us verify faster.
+    validations:
+      required: true
+  - type: input
+    id: licence
+    attributes:
+      label: Licence and price (if you know them)
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checks
+      options:
+        - label: I searched the catalog and it is not there yet
+          required: true
+        - label: I am not affiliated with the tool (or I say so above)

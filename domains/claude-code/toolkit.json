@@ -1,0 +1,250 @@
+{
+  "_about": "Machine-readable twin of claude-toolkit.md. The knowledge-library plugin's SessionStart hook reads it, detects the project type from files in the working folder, and tells each session which plugins and connectors to use and which to leave off. Edit the doc and this file together.",
+  "always": {
+    "use": [
+      "knowledge-library plugin (status, filing back)",
+      "context7 for current library docs (never put client code or secrets in a query)",
+      "/commit from commit-commands at milestones",
+      "built-in browser pane for checking your own pages"
+    ],
+    "plugins": [
+      "knowledge-library@knowledge-library",
+      "context7@claude-plugins-official",
+      "commit-commands@claude-plugins-official",
+      "frontend-design@claude-plugins-official"
+    ],
+    "avoid": [
+      "Linear, HubSpot connectors (not part of this work; write access)",
+      "brightdata-plugin (paid scraping; its skill tries to replace all web tools)",
+      "desktop-commander (full shell and file access, not needed)",
+      "workflows / ultracode / fast mode unless the user asks",
+      "Claude in Chrome unless a logged-in dashboard is needed"
+    ]
+  },
+  "profiles": [
+    {
+      "id": "flutter",
+      "label": "Flutter app",
+      "detect": {
+        "files": [
+          "pubspec.yaml"
+        ],
+        "contains": {
+          "pubspec.yaml": "flutter"
+        }
+      },
+      "use": [
+        "dart-flutter plugin skills (tests, responsive layout, layout fixes, go_router, l10n) and its bundled Dart MCP (hot reload, runtime errors)",
+        "starters/flutter-app and playbooks/mobile-app.md from the library"
+      ],
+      "plugins": [
+        "dart-flutter@dart-flutter"
+      ],
+      "install": {
+        "dart-flutter@dart-flutter": "claude plugin marketplace add flutter/skills && claude plugin install dart-flutter@dart-flutter --scope user"
+      },
+      "avoid": [
+        "Playwright / Chrome DevTools MCP (not a web project)",
+        "Supabase connector unless the app uses Supabase",
+        "a second, hand-added Dart MCP (`claude mcp add dart …`): the plugin already brings one"
+      ]
+    },
+    {
+      "id": "firebase",
+      "label": "Firebase",
+      "detect": {
+        "files": [
+          "firebase.json",
+          "android/app/google-services.json",
+          "ios/Runner/GoogleService-Info.plist"
+        ]
+      },
+      "use": [
+        "Firebase MCP only if needed, pinned version, `--only crashlytics` for read-mostly work"
+      ],
+      "avoid": []
+    },
+    {
+      "id": "cloudflare",
+      "label": "Cloudflare site/Worker",
+      "detect": {
+        "files": [
+          "wrangler.toml",
+          "wrangler.json",
+          "wrangler.jsonc"
+        ]
+      },
+      "use": [
+        "cloudflare plugin skills (Workers, wrangler, Turnstile, web-perf)",
+        "the claude.ai Cloudflare connector with a token limited to this account"
+      ],
+      "plugins": [
+        "cloudflare@claude-plugins-official"
+      ],
+      "install": {
+        "cloudflare@claude-plugins-official": "claude plugin install cloudflare@claude-plugins-official --scope user"
+      },
+      "avoid": [
+        "Vercel plugin",
+        "authenticating the cloudflare plugin's own MCP: the claude.ai connector already covers it"
+      ]
+    },
+    {
+      "id": "supabase",
+      "label": "Supabase",
+      "detect": {
+        "files": [
+          "supabase/config.toml"
+        ],
+        "contains": {
+          "package.json": "@supabase/",
+          "pubspec.yaml": "supabase"
+        }
+      },
+      "use": [
+        "Supabase connector with read_only=true and this project's project_ref only; never client production data"
+      ],
+      "avoid": []
+    },
+    {
+      "id": "shopify",
+      "label": "Shopify store/theme",
+      "detect": {
+        "files": [
+          "shopify.theme.toml",
+          "layout/theme.liquid",
+          "shopify.app.toml"
+        ],
+        "contains": {
+          "package.json": "@shopify/"
+        }
+      },
+      "use": [
+        "Shopify connector",
+        "shopify-ai-toolkit plugin (read its hooks before installing)"
+      ],
+      "plugins": [
+        "shopify-ai-toolkit@claude-plugins-official"
+      ],
+      "install": {
+        "shopify-ai-toolkit@claude-plugins-official": "claude plugin install shopify-ai-toolkit@claude-plugins-official --scope user"
+      },
+      "avoid": []
+    },
+    {
+      "id": "web",
+      "label": "Website / web app",
+      "detect": {
+        "files": [
+          "astro.config.mjs",
+          "astro.config.ts",
+          "next.config.js",
+          "next.config.mjs",
+          "next.config.ts",
+          "vite.config.ts",
+          "vite.config.js",
+          "index.html"
+        ]
+      },
+      "use": [
+        "typescript-lsp (works with the project's own node_modules/typescript)",
+        "ONE browser MCP for tests: Playwright (--isolated) or Chrome DevTools, not both",
+        "searchfit-seo / marketing skills for SEO and copy",
+        "library playbooks for the site type"
+      ],
+      "plugins": [
+        "typescript-lsp@claude-plugins-official"
+      ],
+      "avoid": []
+    },
+    {
+      "id": "vercel",
+      "label": "Vercel deploy",
+      "detect": {
+        "files": [
+          "vercel.json",
+          ".vercel/project.json"
+        ]
+      },
+      "use": [
+        "vercel plugin with VERCEL_PLUGIN_TELEMETRY=off"
+      ],
+      "avoid": []
+    },
+    {
+      "id": "stripe",
+      "label": "Stripe payments",
+      "detect": {
+        "contains": {
+          "package.json": "\"stripe\""
+        }
+      },
+      "use": [
+        "Stripe MCP in a test account only; check UAE gateways (Telr, Network International, Tap)"
+      ],
+      "avoid": [
+        "live-mode Stripe keys"
+      ]
+    },
+    {
+      "id": "video",
+      "label": "Video (Remotion / HyperFrames)",
+      "detect": {
+        "contains": {
+          "package.json": "remotion|hyperframes"
+        },
+        "files": [
+          "vp.py"
+        ]
+      },
+      "use": [
+        "remotion or hyperframes plugin skills",
+        "GSAP skills",
+        "multilang-video-pipeline doc; Persian voice: Higgs v3 (non-commercial) or MOSS with a long reference"
+      ],
+      "avoid": [
+        "`hyperframes usage`",
+        "ig-human on Persian/Arabic text",
+        "Runway/Higgsfield credits unless the user asks"
+      ]
+    },
+    {
+      "id": "social",
+      "label": "Social media content",
+      "detect": {
+        "dirs": [
+          "posts",
+          "reels",
+          "captions",
+          "content"
+        ]
+      },
+      "use": [
+        "Canva connector",
+        "instagram-agent skills (never ig-human on fa/ar)",
+        "marketing skills",
+        "Buffer or Metricool for scheduling (one), every publish approved by the user"
+      ],
+      "avoid": [
+        "postiz publishing without the user's approval"
+      ]
+    },
+    {
+      "id": "library",
+      "label": "Knowledge library itself",
+      "detect": {
+        "files": [
+          "llms.txt",
+          "scripts/sync.py",
+          "catalog/index.json"
+        ]
+      },
+      "use": [
+        "kl-researcher / kl-verifier / kl-curator agents",
+        "/kl-review, /kl-add, /kl-status",
+        "scripts/build_all.py before every commit"
+      ],
+      "avoid": []
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Questions and ideas
+    url: https://github.com/nexorahai-svg/claude-knowledge-library/discussions
+    about: Ask how to use the library or the plugin, share what you built
+  - name: Instagram
+    url: https://www.instagram.com/nexorahai/
+    about: Tips, reels and new findings from Nexorah AI

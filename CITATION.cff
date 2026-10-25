@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+message: "If you use this library, please cite it as below."
+title: "Claude Knowledge Library"
+type: dataset
+authors:
+  - name: "Nexorah AI"
+    website: "https://github.com/nexorahai-svg"
+repository-code: "https://github.com/nexorahai-svg/claude-knowledge-library"
+url: "https://nexorahai-svg.github.io/claude-knowledge-library/dashboard/"
+license: CC-BY-4.0
+keywords: [claude, claude-code, knowledge-base, ai-tools, prompt-engineering, rtl, persian, arabic]

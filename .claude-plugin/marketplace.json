@@ -1,0 +1,14 @@
+{
+  "name": "knowledge-library",
+  "description": "Verified knowledge library (public, read-only copy): verified tools and methods for apps, websites, social media content and Claude Code",
+  "owner": {
+    "name": "owner"
+  },
+  "plugins": [
+    {
+      "name": "knowledge-library",
+      "source": "./plugins/knowledge-library",
+      "description": "Use the shared knowledge library in every project: read it before choosing tools, file genuinely new findings back, keep it in sync across machines with git"
+    }
+  ]
+}
