@@ -1,0 +1,8 @@
+{
+  "name": "knowledge-library",
+  "description": "Use the shared knowledge library in every project: read it before choosing tools, file genuinely new findings back, keep it in sync across machines with git. Hooks keep it current and flag overdue automatic runs; agents and commands research, verify and file.",
+  "author": {
+    "name": "owner"
+  },
+  "repository": "https://github.com/nexorahai-svg/claude-knowledge-library"
+}

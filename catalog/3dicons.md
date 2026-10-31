@@ -1,0 +1,37 @@
+---
+name: 3dicons
+slug: 3dicons
+category: icons-logos
+domains: [website]
+verdict: adopt
+status: researched
+summary: آیکون‌های سه‌بعدی متن‌باز ساخته‌شده در Blender؛ نسخه‌ی ۱ با مجوز CC0
+use_when: "need 3D icons for a features or services section ; need CC0 3D illustration assets for web or social"
+how: "Download v1 Blender file or PNGs from https://3dicons.co (CC0, free commercial use, no credit needed); check the licence of any newer set (social, Halloween) separately before use"
+url: https://3dicons.co
+repo: ""
+license: "CC0 (نسخه‌ی ۱)"
+pricing: freemium
+risk: low
+sources: [S29]
+found_in: [batch-01/P11, batch-01/P23]
+last_checked: 2026-10-31
+next_check: "2026-11-30"
+---
+
+# 3dicons
+
+## چیست
+✅ آیکون‌های سه‌بعدی از @realvjy. تعدادها ناهمخوان (۱۴۴۰+، ۱۵۰۰+، یا ۲۰۰ آیکون و ۱۴۰۰+ رندر). فایل Blender برای نسخه‌ی ۱، فایل و افزونه‌ی Figma.
+
+## کی استفاده کنیم
+🧭 آیکون سه‌بعدی برای بخش ویژگی‌ها و خدمات.
+
+## قیمت و مجوز
+✅ صفحه‌ی اصلی و درباره: CC0، رایگان برای استفاده‌ی شخصی و تجاری، بدون نیاز به ذکر نام. ❓ مجوز مجموعه‌های جدیدتر (شبکه‌ی اجتماعی، هالووین) جدا چک نشد. نسخه‌ی Pro (ویرایش رنگ و زاویه) در دسترسی اولیه و بدون شرایط اعلام‌شده.
+
+## ریسک و هشدار
+کم. قبل از استفاده از مجموعه‌های جدید، مجوزشان را چک کن.
+
+## مرتبط
+[منابع طراحی](../domains/website/06-resources/design-resources.md) · [S29](../sources/README.md#s29)

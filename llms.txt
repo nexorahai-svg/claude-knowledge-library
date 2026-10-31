@@ -1,0 +1,47 @@
+# Knowledge library (کتابخانه‌ی دانش) — start here
+
+> Built 2026-11-01 by scripts/build_llms.py. Short router; the full list of every document and
+> every tool by verdict is llms-full.txt (open it only when you need to search the whole library).
+
+1. Read projects/user-profile.md (standing rules, budget rules, guards) before choosing anything.
+2. Classify the task with the routes below, open that one file, follow it.
+3. Verdicts: adopt ✅ use · trial 🧪 small test first · assess 👀 not yet · hold ⛔ never. Never copy
+   others' designs, prompts or code; only clearly licensed assets. File new findings back (CLAUDE.md).
+
+## Routes
+
+| Task | Open |
+|---|---|
+| Any project: which playbook | playbooks/README.md |
+| Design an app (any kind, Android + iOS) | domains/apps/app-design-system.md, then app-styles.md and app-screen-patterns.md |
+| Start the code of a Flutter app | starters/flutter-app/README.md |
+| A link, post, reel or tool to check | research/x-research-plan.md (+ scripts/fetch_post.py) |
+| Is a tool still current / ready for a better verdict | scripts/check_updates.py and its report in research/inbox/ |
+| Claude Code cost, safety, plugins, MCP, parallel work | domains/claude-code/README.md |
+| Security: this month's advisories, patching, supply chain, plugins/MCP risk | domains/security/README.md |
+| Set up a new machine like the main one | projects/new-machine.md (+ scripts/setup_machine.py) |
+| Which tool and exact step for the job at hand (situation -> tool -> how) | catalog/use-when.md |
+| Find a tool by name or category | catalog/README.md or catalog/index.json |
+| A source ID (S12) | sources/S12.md |
+
+## Playbooks
+
+- راهنمای پروژه: هوش مصنوعی در محصول و عامل خودکار: playbooks/ai-feature-agent.md
+- راهنمای پروژه: برند و لوگو: playbooks/brand-identity.md
+- راهنمای پروژه: سایت کسب‌وکار: playbooks/business-website.md
+- راهنمای پروژه: اپ دسکتاپ Windows، macOS و Linux: playbooks/desktop-app.md
+- راهنمای پروژه: اپ شبکه‌ی محلی در خود کسب‌وکار: playbooks/local-business-app.md
+- راهنمای پروژه: اپ موبایل iOS و Android: playbooks/mobile-app.md
+- راهنمای پروژه: فروشگاه آنلاین: playbooks/online-store.md
+- راهنمای پروژه: محتوای شبکه‌های اجتماعی: playbooks/social-content.md
+- راهنمای پروژه: داشبورد و نرم‌افزار وب: playbooks/web-app-dashboard.md
+
+## Domains
+
+- وبسایت: domains/website/README.md
+- اپلیکیشن (موبایل و دسکتاپ، چندسکویی): domains/apps/README.md
+- شبکه‌های اجتماعی (ویدیو، عکس، پست، صدا): domains/social-media/README.md
+- Claude Code (هزینه، امنیت، کار موازی، بررسی، دستیار): domains/claude-code/README.md
+- امنیت (هشدارهای ماه، به‌روزرسانی، زنجیره‌ی تأمین، عامل‌ها): domains/security/README.md
+
+Counts: 553 tool cards, 69 documents. Sync: python3 scripts/sync.py at start and end.

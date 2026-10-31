@@ -1,0 +1,456 @@
+# Knowledge library (کتابخانه‌ی دانش)
+
+> Verified tools, methods and sources for cross-platform apps (mobile and desktop), websites
+> and social media content, plus Claude Code know-how. Documents are in Persian; prompts are in English.
+> Built 2026-11-01 by scripts/build_llms.py. Read this first, then open only what you need.
+
+Rules: never copy others' designs, prompts or code; use only clearly licensed assets;
+verdicts are adopt (use) / trial (small test first) / assess (not yet recommended) /
+hold (do not use). Cards with status queued are not recommendations. Every project must
+use the newest verified option and file new findings back (see CLAUDE.md, projects/README.md).
+
+## Start here: project playbooks (the teacher)
+
+Classify the project, open its playbook and follow it phase by phase: questions to ask,
+default stack with verdicts, and a runnable 'done' gate for every phase. Router: playbooks/README.md
+
+- [راهنمای پروژه: هوش مصنوعی در محصول و عامل خودکار](playbooks/ai-feature-agent.md): Claude در پروژه‌ای که هوش مصنوعی داخل محصول دارد (دستیار سایت، خواندن مدرک، پیش‌نویس پاسخ) یا یک عامل و دستیار خودکار می‌سازد (کار زمان‌بندی‌شده، عامل Claude Code، اتصال MCP)، از اولین پیام تا تحویل و نگهداری، قدم‌به‌قدم بداند چه بپرسد، چه بسازد، با کدام ابزار، و هر مرحله کی «تمام» است.
+- [راهنمای پروژه: برند و لوگو](playbooks/brand-identity.md): Claude در یک پروژه‌ی لوگو و هویت برند (سه‌بعدی و تخت، انگلیسی و عربی، فونت، رنگ، favicon و کیت برند برای سایت، اپ و شبکه‌های اجتماعی) از اولین پیام تا تحویل و نگهداری، قدم‌به‌قدم بداند چه بپرسد، چه بسازد، با کدام ابزار، و هر مرحله کی «تمام» است.
+- [راهنمای پروژه: سایت کسب‌وکار](playbooks/business-website.md): Claude در یک پروژه‌ی سایت معرفی شرکت، برند یا لندینگ‌پیج (چندزبانه، فرم تماس، سئو، سئوی محلی، میزبانی) از اولین پیام تا تحویل و نگهداری، قدم‌به‌قدم بداند چه بپرسد، چه بسازد، با کدام ابزار، و هر مرحله کی «تمام» است.
+- [راهنمای پروژه: اپ دسکتاپ Windows، macOS و Linux](playbooks/desktop-app.md): Claude در یک پروژه‌ی اپ دسکتاپ از اولین پیام تا تحویل و نگهداری، قدم‌به‌قدم بداند چه بپرسد، چه بسازد، با کدام ابزار، و هر مرحله کی «تمام» است.
+- [راهنمای پروژه: اپ شبکه‌ی محلی در خود کسب‌وکار](playbooks/local-business-app.md): Claude در پروژه‌ای که روی یک رایانه در خود کسب‌وکار اجرا می‌شود و گوشی‌ها از Wi-Fi یا تونل وصل می‌شوند (سفارش QR، صندوق، صف، چاپ برگه)، از اولین پیام تا تحویل و نگهداری، قدم‌به‌قدم بداند چه بپرسد، چه بسازد، با کدام ابزار، و هر مرحله کی «تمام» است.
+- [راهنمای پروژه: اپ موبایل iOS و Android](playbooks/mobile-app.md): Claude در یک پروژه‌ی اپ موبایل فروشگاهی (iOS و Android) از اولین پیام تا تحویل و نگهداری، قدم‌به‌قدم بداند چه بپرسد، چه بسازد، با کدام ابزار، و هر مرحله کی «تمام» است.
+- [راهنمای پروژه: فروشگاه آنلاین](playbooks/online-store.md): Claude در یک پروژه‌ی فروشگاه آنلاین (کاتالوگ از داده‌ی صندوق، سبد خرید، پرداخت با درگاه امارات، انبار، قیمت رقبا) از اولین پیام تا تحویل و نگهداری، قدم‌به‌قدم بداند چه بپرسد، چه بسازد، با کدام ابزار، و هر مرحله کی «تمام» است.
+- [راهنمای پروژه: محتوای شبکه‌های اجتماعی](playbooks/social-content.md): Claude در یک پروژه‌ی محتوای شبکه‌های اجتماعی (ریل و ویدیوی کوتاه ۹:۱۶ با زیرنویس فارسی، ویدیوی لانچ با کد، تصویر پست و کاروسل، صدا، موسیقی، کپشن و انتشار) از اولین پیام تا تحویل و نگهداری، قدم‌به‌قدم بداند چه بپرسد، چه بسازد، با کدام ابزار، و هر مرحله کی «تمام» است.
+- [راهنمای پروژه: داشبورد و نرم‌افزار وب](playbooks/web-app-dashboard.md): Claude در یک پروژه‌ی داشبورد، پنل مدیریت یا نرم‌افزار تحت وب با ورود کاربر، داده، نمودار و به‌روزرسانی زنده، از اولین پیام تا تحویل و نگهداری، قدم‌به‌قدم بداند چه بپرسد، چه بسازد، با کدام ابزار، و هر مرحله کی «تمام» است.
+
+## Documents
+
+### وبسایت
+- [روش کار با Claude برای ساخت وبسایت](domains/website/01-method/claude-workflow.md) [دستورالعمل]: روش قدم‌به‌قدم ساختن سایت با Claude، از ایده تا انتشار.
+- [Vibe Coding: ساختن محصول قابل‌اعتماد با هوش مصنوعی](domains/website/01-method/vibe-coding.md) [دستورالعمل]: مراحلی که بعد از طراحی، سایت را به یک محصول سالم، امن و منتشرشده تبدیل می‌کند.
+- [رنگ، بافت و پس‌زمینه](domains/website/02-design/color-and-texture.md) [مرجع]: قوانین رنگ، کنتراست، گرادیانت، بافت و ویدیوی پس‌زمینه.
+- [سبک‌های طراحی وبسایت](domains/website/02-design/design-styles.md) [مرجع]: انتخاب سبک بصری مناسب برای هر نوع کسب‌وکار، با اجزای اصلی هر سبک و یک جمله‌ی پرامپت آماده.
+- [ساختار لندینگ‌پیج](domains/website/02-design/landing-page-structure.md) [مرجع]: ترتیب بخش‌های یک لندینگ‌پیج و هدف هر بخش.
+- [لوگو و هویت برند با Claude](domains/website/02-design/logo-and-brand.md) [دستورالعمل]: ساختن لوگوی مدرن و باکیفیت (سه‌بعدی و تخت، انگلیسی و عربی) با Claude Code، و پیدا کردن سلیقه‌ی مشتری وقتی خودش نمی‌تواند توضیح بدهد.
+- [سایت فارسی و راست‌به‌چپ (RTL)](domains/website/02-design/persian-rtl.md) [دستورالعمل]: هر چیزی که برای ساختن یک سایت فارسی درست و زیبا لازم است: فونت، جهت، اعداد و خطاهای رایج.
+- [تایپوگرافی (فونت‌های لاتین)](domains/website/02-design/typography.md) [مرجع]: انتخاب و ترکیب فونت برای تیتر و متن، و قوانین اندازه و فاصله.
+- [سه‌بعدی، WebGL و تصاویر تعاملی](domains/website/03-motion-3d/3d-webgl.md) [توضیح]: ساختن صحنه‌های سه‌بعدی، افکت‌های WebGL و تصاویر توضیحی تعاملی در سایت.
+- [حرکت و انیمیشن](domains/website/03-motion-3d/motion-animation.md) [مرجع]: ابزارها، الگوها و قوانین انیمیشن در سایت (اسکرول، ورود عناصر، ریزحرکت).
+- [هوش مصنوعی ابری در محصول](domains/website/04-tech/ai-in-product.md) [توضیح]: وقتی سایت یا اپ خودش از مدل زبانی استفاده می‌کند (دستیار سایت، خواندن مدرک، پیش‌نویس ایمیل)، کار را طوری بچینیم که بین مدل ابری و مدل محلی جابه‌جا شود، داده‌ی شخصی کمتری بیرون برود، هزینه زیر کنترل بماند و مشتری بتواند رضایتش را پس بگیرد.
+- [سایت تجاری کامل روی Cloudflare (رایگان)](domains/website/04-tech/cloudflare-full-stack.md) [دستورالعمل]: راه‌اندازی یک سایت شرکتی کامل با فرم، پایگاه داده، فایل، ضد ربات و پنل مدیریت امن، فقط با سرویس‌های رایگان Cloudflare، و انتقال دامنه به آن.
+- [کتابخانه‌های کامپوننت و ابزارهای انیمیشن](domains/website/04-tech/component-libraries.md) [مرجع]: برای هر نیاز (افکت لندینگ، ریزتعامل، نقشه، Lottie، سه‌بعدی، پس‌زمینه) بدانیم از کدام کتابخانه یا ابزار استفاده کنیم و مجوزش اجازه‌ی کار مشتری را می‌دهد یا نه.
+- [ورود مشتری و نقش‌ها (فروشگاه، داشبورد، اپ موبایل، پنل کارکنان)](domains/website/04-tech/customer-auth.md) [دستورالعمل]: برای هر پروژه‌ای که مشتری یا کارمند باید وارد شود، یک روش ثابت و تأییدشده داشته باشیم: کدام ابزار، چه قانون‌هایی برای رمز و نشست، passkey، کد ایمیلی یا پیامکی، نقش‌ها، و چه آزمون‌هایی پیش از انتشار.
+- [دامنه، ایمیل شرکتی و ارسال ایمیل از سایت](domains/website/04-tech/domain-and-email.md) [دستورالعمل]: یک ایمیل شرکتی رایگان روی دامنه‌ی خود کسب‌وکار، با رکوردهای ضد جعل درست، و ارسال امن پیام فرم سایت به آن.
+- [داده‌ی فروشگاه آنلاین: انبار، دسته‌بندی و قیمت رقبا](domains/website/04-tech/online-store-data.md) [دستورالعمل]: وقتی یک مغازه‌ی واقعی می‌خواهد فروشگاه آنلاین بسازد، داده‌ی صندوق (POS) را تمیز کنیم، دسته‌بندی سایت را از آن بسازیم و قیمت هر کالا را با سایت‌های رقیب مقایسه کنیم؛ با Claude Code، رایگان، و بدون دور زدن ضد ربات.
+- [پرداخت آنلاین در امارات: انتخاب درگاه و اتصال امن](domains/website/04-tech/payments-uae.md) [دستورالعمل]: برای فروشگاه آنلاین، اپ موبایل و مرکز خدمات در امارات (کارت، Apple Pay، Google Pay، درهم) بدانیم کدام درگاه را بگیریم، چطور امن وصلش کنیم، چطور آزمونش کنیم و پیش از انتخاب از کسب‌وکار چه بپرسیم.
+- [نصب پنل روی گوشی (PWA) و اعلان Web Push بدون کتابخانه](domains/website/04-tech/pwa-install-web-push.md) [دستورالعمل]: یک سایت بتواند چند «اپ» نصب‌شدنی (مثلاً پنل مشتری و پنل تیم) داشته باشد، کارت راهنمای نصب برای اندروید و آیفون نشان دهد و اعلان گوشی بفرستد، بدون وابستگی به بسته‌ی قدیمی.
+- [سایت Next.js روی سرور لینوکسی خودمان](domains/website/04-tech/self-hosted-server.md) [دستورالعمل]: وقتی سایت باید روی سرور خودمان اجرا شود (داده‌ی حساس، مدل هوش مصنوعی محلی، کار پس‌زمینه)، سرور را امن، با HTTPS خودکار، به‌روزرسانی تقریباً بدون قطعی، نسخه‌ی امضاشده و پشتیبان رمزشده راه بیندازیم.
+- [تکنولوژی پیشنهادی](domains/website/04-tech/tech-stack.md) [مرجع]: انتخاب فریم‌ورک، کتابخانه و میزبانی برای هر نوع پروژه، با مجوز هر کدام.
+- [صفحه‌های حقوقی سایت خدمات خصوصی در دبی](domains/website/04-tech/uae-legal-pages.md) [مرجع]: برای سایت یک مرکز خصوصی خدمات در دبی بدانیم پنج صفحه‌ی حقوقی (حریم خصوصی، شرایط استفاده، بازپرداخت، شکایت، دسترس‌پذیری) چه بخش‌هایی باید داشته باشند، تا متن را با وکیل نهایی کنیم.
+- [ارسال و قانون فروشگاه آنلاین در امارات](domains/website/04-tech/uae-shipping-and-rules.md) [مرجع]: پیش از ساخت یک فروشگاه آنلاین در دبی، به‌ویژه عطر و آرایشی، بدانیم کدام مجوز، ثبت کالا، قانون فاکتور و قیمت و کدام محدودیت ارسال را باید ببینیم و چه چیزی هنوز باز است.
+- [راهنمای رسانه: عکس، ویدیو، صدا](domains/website/05-media/media-guidelines.md) [مرجع]: فرمت، حجم و قوانین استفاده از عکس، ویدیو و صدا در سایت.
+- [فهرست منابع طراحی (سایت‌های الهام، فونت، آیکون، قالب)](domains/website/06-resources/design-resources.md) [مرجع]: فهرست سایت‌هایی که هنگام طراحی به کار می‌آیند، با توضیح دقیق اینکه هر کدام واقعاً چه می‌دهد، رایگان است یا پولی، و مجوزش چیست.
+- [چک‌لیست کیفیت قبل از انتشار](domains/website/07-quality/launch-checklist.md) [دستورالعمل]: آخرین بررسی‌ها قبل از اینکه سایت منتشر شود: طراحی، سرعت، دسترسی‌پذیری، سئو، امنیت و حقوق محتوا.
+- [کتابخانه‌ی پرامپت](domains/website/08-prompts/prompt-library.md) [مرجع]: همه‌ی پرامپت‌های آماده در یک جا: پرامپت‌های عمومی بخش‌های سایت اینجا، و فهرست پرامپت‌های تخصصی که در سندهای موضوعی هستند.
+- [سئوی محلی و Google Business Profile](domains/website/09-seo/local-business-profile.md) [دستورالعمل]: کسب‌وکار در Google Maps، جستجوی محلی و جواب‌های هوش مصنوعی (AI Overviews، Gemini، Copilot، Siri) با اطلاعات درست و کامل دیده شود؛ با تأیید موفق از بار اول.
+- [سئوی فنی و دیده شدن در جستجوی هوش مصنوعی](domains/website/09-seo/seo-and-ai-search.md) [دستورالعمل]: هر سایت تازه از روز اول در گوگل، بینگ و دستیارهای هوش مصنوعی (ChatGPT، Gemini، Copilot، Perplexity، Claude) پیدا و نقل شود؛ با تنظیم‌های فنی درست و بدون ترفندهای بی‌اثر.
+
+### اپلیکیشن (موبایل و دسکتاپ، چندسکویی)
+- [بک‌اند اپ موبایل: داده، ورود، اعلان، پرداخت](domains/apps/app-backend.md) [توضیح]: انتخاب بک‌اند برای اپ موبایلی که داده‌ی شخصی حساس (مثل گذرنامه و کارت شناسایی) می‌گیرد، با تمرکز بر محل نگهداری داده، ورود کاربر، اعلان، پرداخت و امنیت فایل.
+- [سیستم طراحی اپ: از پرسش‌نامه تا دروازه‌ی کیفیت](domains/apps/app-design-system.md) [دستورالعمل]: وقتی کاربر می‌گوید «یک اپ بساز»، Claude هر اپی را (هر موضوع و هر سبک) برای Android و iOS دقیق و یکدست طراحی کند: سلیقه را بپرسد، سبک و توکن را بردارد، صفحه‌ها را از الگو بسازد، فرق دو سکو را رعایت کند، و پیش از «تمام» دروازه‌ی کیفیت طراحی را بگذراند.
+- [طراحی رابط اپ: HIG، Material و فارسی](domains/apps/app-design.md) [مرجع]: عددها و قانون‌هایی که هر صفحه‌ی اپ موبایل و دسکتاپ باید رعایت کند: اندازه‌ی لمس، کنتراست، اندازه‌ی متن، و قرینه‌سازی برای فارسی.
+- [عملیات پس از انتشار: خطا، تحلیل، به‌روزرسانی، امنیت](domains/apps/app-operations.md) [مرجع]: حداقل ابزار لازم برای اینکه اپ منتشرشده سالم بماند: گزارش خطا، تحلیل با حفظ حریم خصوصی، کارایی، به‌روزرسانی سریع، امنیت و پشتیبانی، و اینکه در فرم‌های حریم خصوصی فروشگاه چه اعلام شود.
+- [محافظت از اپ در برابر مهندسی معکوس، و آزمودن خروجی خودمان](domains/apps/app-protection.md) [دستورالعمل]: کار مهندسی معکوس نرم‌افزارهای ما (اپ موبایل، دسکتاپ، وب) را تا جای ممکن سخت و کم‌فایده کنیم. همچنین خودمان پیش از هر انتشار، خروجی‌مان را مثل یک مهاجم باز کنیم تا ببینیم چه چیزی لو می‌رود.
+- [کاتالوگ صفحه‌های اپ](domains/apps/app-screen-patterns.md) [مرجع]: برای هر صفحه‌ی رایج اپ، Claude بداند چه اجزایی لازم است، کدام حالت‌ها را باید بسازد، در iOS و Android چه فرقی دارد و از قالب شروع چه چیزی آماده است؛ تا هر اپی (هر موضوع) با همین الگوها کامل و یکدست ساخته شود.
+- [کاتالوگ سبک‌های اپ](domains/apps/app-styles.md) [مرجع]: برای هر اپ تازه، Claude از روی موضوع و حس خواسته‌شده یک سبک نام‌دار با دستور دقیق (رنگ، فونت، گوشه، سایه، حرکت، امضای دیداری) پیشنهاد دهد و همان را با توکن‌های قالب شروع بسازد.
+- [تست اپ و وصل کردن Claude به شبیه‌ساز](domains/apps/app-testing.md) [دستورالعمل]: Claude اپ را خودش روی شبیه‌ساز اجرا کند، ببیند و تست کند، و هیچ کاری «تمام» اعلام نشود تا تست تکرارپذیر روی iOS و Android سبز شود.
+- [انتخاب فریم‌ورک اپ چندسکویی](domains/apps/cross-platform-frameworks.md) [توضیح]: انتخاب فریم‌ورک درست برای اپی که باید روی iOS، Android و دسکتاپ کار کند، وقتی یک نفر با Claude Code می‌سازد و اپ فارسی و راست‌به‌چپ است.
+- [اپ دسکتاپ: Tauri، Electron، Flutter](domains/apps/desktop-apps.md) [توضیح]: انتخاب راه ساخت اپ دسکتاپ (Windows، macOS، Linux) و دانستن کارهای اجباری امنیت، به‌روزرسانی خودکار و امضای کد.
+- [پشته‌ی Expo و React Native](domains/apps/expo-react-native-stack.md) [مرجع]: اگر پروژه‌ای Expo یا React Native شد، برای هر نیاز بدانیم از کدام ابزار شروع کنیم و کدام دام را ببینیم.
+- [مجوزدهی و فروش اپ دسکتاپ (کلید، سرور، پرداخت)](domains/apps/licensing-and-sales.md) [توضیح]: طراحی مجوز (کلید، ماشین، تمدید، ابطال) و فروش خودکار برای اپ دسکتاپ بدون فروشگاه، با سرور روی Cloudflare و پرداخت ایرانی یا اماراتی.
+- [اپ کسب‌وکار روی یک رایانه در محل (شبکه‌ی محلی)](domains/apps/local-network-app.md) [توضیح]: الگوهایی که برای اپی لازم است که روی یک رایانه در خود کسب‌وکار (کافه، فروشگاه، دفتر) اجرا می‌شود و گوشی مشتری‌ها و کارکنان از Wi-Fi یا تونل به آن وصل می‌شوند: اعتماد، همگام‌سازی، قیمت، حریم خصوصی، چاپ و اجرا روی ویندوز و لینوکس.
+- [اولین اپ موبایل تا فروشگاه: برنامه‌ی کامل](domains/apps/mobile-launch-playbook.md) [راهنمای قدم‌به‌قدم]: یک اپ موبایل واقعی (iOS و Android) با Claude Code، از تصمیم پشته تا TestFlight و آزمون Google Play، با جدیدترین ابزارهای بررسی‌شده؛ نمونه‌ی هدف: اپ یک مرکز خدمات دولتی در امارات، سه‌زبانه (انگلیسی، عربی، فارسی).
+- [امضا و انتشار اپ در فروشگاه‌ها](domains/apps/publishing-apps.md) [راهنمای قدم‌به‌قدم]: از ساخت حساب توسعه‌دهنده تا رسیدن اپ به App Store، Google Play و فروشگاه‌های دسکتاپ، بدون رد شدن به خاطر شرط‌های جاافتاده.
+
+### شبکه‌های اجتماعی (ویدیو، عکس، پست، صدا)
+- [مدل‌های تولید ویدیو](domains/social-media/ai-video-models.md) [مرجع]: انتخاب مدل تولید ویدیو برای کلیپ کوتاه تبلیغ محصول و اپ، با قیمت، طول، صدا و شرایط تجاری بررسی‌شده.
+- [صداگذاری با هوش مصنوعی](domains/social-media/ai-voice.md) [مرجع]: ساختن صدای راوی و گفتار برای ویدیوهای سایت و تبلیغات با هوش مصنوعی، با رعایت مجوز.
+- [زیرنویس و متن پست](domains/social-media/captions-and-copy.md) [دستورالعمل]: زیرنویس فارسی دقیق برای ویدیوی کوتاه بسازیم (فایل برای YouTube، سوخته در ویدیو برای TikTok و Instagram) و کپشن هر شبکه را در حد مجاز بنویسیم.
+- [ساخت کلیپ با Claude: مسیر کامل](domains/social-media/claude-clip-pipeline.md) [راهنمای قدم‌به‌قدم]: ساختن کلیپ کوتاه شبکه‌های اجتماعی (۹:۱۶، ۱۵ تا ۶۰ ثانیه، متن و زیرنویس فارسی) با Claude Code، با ساده‌ترین و ارزان‌ترین ترکیب ابزارهای بررسی‌شده، از ایده تا فایل آماده‌ی انتشار.
+- [ویدیو و موشن با کد](domains/social-media/code-to-video.md) [دستورالعمل]: ساختن ویدیوی لانچ، دموی محصول، ویدیوی هیرو و کلیپ شبکه‌های اجتماعی با Claude Code: Claude برنامه می‌نویسد، مرورگر فریم می‌گیرد، FFmpeg ویدیو می‌سازد.
+- [تصویر و گرافیک پست](domains/social-media/images-and-graphics.md) [دستورالعمل]: ساختن تصویر پست، کاور و کاروسل با برند ثابت و متن فارسی درست، و دانستن اینکه کدام مدل تولید تصویر برای کار تجاری امن است.
+- [راه‌اندازی دارایی‌های متا، واتساپ، اینستاگرام و تلگرام برای یک برند](domains/social-media/meta-business-setup.md) [راهنمای قدم‌به‌قدم]: برای برند تازه، حساب‌ها و دارایی‌های متا (فیسبوک، بیزینس پورتفولیو، اپ، اینستاگرام، واتساپ) و تلگرام بدون برخورد با دیوارهای شناخته‌شده راه‌اندازی شود.
+- [سبک‌های موشن دیزاین برای ریلز (ساخت با کد و Claude)](domains/social-media/motion-design-styles.md) [مرجع]: وقتی از Claude یک ریلز یا ویدیوی موشن می‌خواهیم، سبک را با نام و ویژگی‌های دقیق بگوییم تا خروجی یکدست و حرفه‌ای شود؛ برای هر سبک: رنگ، حروف، حرکت، و چطور با HyperFrames یا Remotion و GSAP ساخته می‌شود.
+- [ویدیو از یک پرامپت، با صدا و زیرنویس به هر زبان](domains/social-media/multilang-video-pipeline.md) [راهنمای قدم‌به‌قدم]: کاربر فقط یک پرامپت می‌دهد و برای هر زبانی که بخواهد (اول فارسی، عربی، انگلیسی) یک ویدیوی کامل می‌گیرد: تصویر، صدای گوینده‌ی هم‌زمان با تصویر، و زیرنویس دقیق؛ با بررسی خودکار کیفیت پیش از تحویل.
+- [ابزارهای پولی تولید محتوا: ویدیو، تصویر، صدا و موسیقی](domains/social-media/paid-ai-tools.md) [مرجع]: وقتی ابزار رایگان کافی نیست، برای ریلز و پست حرفه‌ای (سه زبان) کدام سرویس پولی، با کدام طرح، چه قانونی و چه شکل پرامپتی.
+- [ابعاد و قوانین رسانه در هر شبکه](domains/social-media/platform-specs.md) [مرجع]: وقتی ویدیو یا تصویر می‌سازیم، از اول اندازه، طول، حجم و منطقه‌ی امن درست را بدانیم تا شبکه آن را رد یا بریده نکند.
+- [نوشتن پرامپت دقیق برای تصویر و ویدیو](domains/social-media/prompt-writing.md) [دستورالعمل]: هر پرامپت تصویر و ویدیو پیش از ارسال دقیق، بی‌ایراد و دارای منبع باشد، تا اعتبار هدر نرود و نتیجه تکرارپذیر شود.
+- [انتشار و زمان‌بندی پست](domains/social-media/publishing.md) [دستورالعمل]: Claude پست را آماده و زمان‌بندی کند، با کمترین کار راه‌اندازی، بدون نقض قانون شبکه‌ها، و همیشه با تأیید انسان پیش از انتشار.
+- [راهبرد ریلز: الگوریتم، قلاب، قالب، طول، زمان](domains/social-media/reels-strategy.md) [توضیح]: پیش از ساخت و انتشار ریلز بدانیم چه چیزی رسماً تأیید شده، چه چیزی فقط داده‌ی فروشنده یا قاعده‌ی سرانگشتی است، و چه چیزی را باید روی حساب خودمان آزمود.
+- [کتابخانه‌ی صدا: افکت، صدای محیط و موسیقی](domains/social-media/sound-library.md) [دستورالعمل]: پیدا کردن صدای رایگان و قانونی برای ویدیوهای سایت و تبلیغات، و وصل کردن Claude به آن.
+
+### Claude Code (هزینه، امنیت، کار موازی، بررسی، دستیار)
+- [جعبه‌ابزار Claude: پلاگین‌ها، کانکتورها و قابلیت‌های پنهان](domains/claude-code/claude-toolkit.md) [مرجع]: هر جلسه‌ی Claude، در هر پروژه، بداند کدام پلاگین و کانکتور را روشن کند، کدام را خاموش نگه دارد و از کدام قابلیت‌های کمترشناخته‌ی Claude سود ببرد. انتخاب‌ها برای اپ (Flutter)، سایت (Cloudflare، Supabase، Shopify) و محتوای شبکه‌های اجتماعی است؛ کار چندزبانه با راست‌به‌چپ.
+- [GPU ابری رایگان با molab: چه کارهایی و چطور](domains/claude-code/cloud-gpu-molab.md) [راهنمای قدم‌به‌قدم]: وقتی کاربر به یک جلسه می‌گوید «از molab استفاده کن»، جلسه بداند با GPU ابری رایگان molab چه کارهایی از کارهای ما (اپ، سایت، محتوای شبکه‌های اجتماعی) برمی‌آید، از کدام ابزار کتابخانه، و دقیقاً چطور وصل شود، کار را اجرا کند و خروجی را بگیرد.
+- [هزینه و کارایی Claude Code](domains/claude-code/cost-efficiency.md) [دستورالعمل]: کم کردن هزینه و مصرف سقف Claude Code بدون پایین آمدن کیفیت: اول اندازه‌گیری، بعد اهرم‌ها به ترتیب، بعد سقف.
+- [امنیت MCP و افزونه‌های Claude Code](domains/claude-code/mcp-safety.md) [توضیح]: قواعد ثابت برای وصل کردن سرورهای MCP، افزونه‌ها و hookها به Claude Code، بدون اینکه دسترسی یا داده‌ی بیش از حد بدهیم.
+- [کار موازی در Claude Code](domains/claude-code/parallel-agents.md) [دستورالعمل]: چند کار را هم‌زمان با Claude Code پیش ببریم بدون اینکه تغییرها با هم برخورد کنند: worktree، زیرعامل‌ها، تیم عامل‌ها، جلسه‌های پس‌زمینه و `/batch`.
+- [دستیار شخصی با Claude Code: حافظه، ایمیل، تقویم و زمان‌بندی](domains/claude-code/personal-assistant.md) [دستورالعمل]: ساختن یک دستیار شخصی امن با Claude Code که حافظه دارد، ایمیل و تقویم را می‌خواند و کارهای تکراری را زمان‌بندی می‌کند، بدون اینکه دسترسی خطرناک بگیرد.
+- [قانون منابع: رم، پردازنده، کارت گرافیک و دیسک در هر جلسه](domains/claude-code/resource-safety.md) [دستورالعمل]: هیچ جلسه‌ی Claude، هیچ build، رندر، مدل محلی یا گروه زیرعامل، رایانه را به هنگ کردن نرساند؛ کار سنگین وقتی دستگاه شلوغ است **صبر کند** نه اینکه خراب شود؛ و این قانون کار عادی را هم متوقف نکند.
+- [دستورهای `/` و میان‌برهای Claude Code](domains/claude-code/slash-commands.md) [مرجع]: دستورهای کمترشناخته‌ی Claude Code که در کار روزانه هزینه را کم، اشتباه را برگشت‌پذیر و کار موازی را ساده می‌کنند؛ با مثال کاربردی.
+- [بررسی خودکار («اوراکل»): بستن حلقه‌ی کار Claude](domains/claude-code/verification.md) [دستورالعمل]: به Claude چیزی بدهیم که خودش بتواند اجرا کند و «قبول» یا «رد» بگیرد، تا به‌جای «به نظر تمام است» با «بررسی قبول شد» کار را تمام کند؛ و مطمئن شویم خود بررسی‌ها هم درست کار می‌کنند.
+
+### امنیت (هشدارهای ماه، به‌روزرسانی، زنجیره‌ی تأمین، عامل‌ها)
+- [هشدارهای امنیتی اکتبر ۲۰۲۶ برای ابزارهای کتابخانه](domains/security/advisories-2026-10.md) [مرجع]: هر هشدار امنیتی ماه برای ابزارهایی که در کتابخانه داریم، با نسخه‌ی آسیب‌دیده، نسخه‌ی اصلاح‌شده، شدت و کار دقیقی که باید کرد؛ تا در هر پروژه با یک نگاه بدانیم چه چیزی باید به‌روز شود.
+- [چک‌لیست امنیت پیش از انتشار سایت و اپ](domains/security/pre-launch-checklist.md) [دستورالعمل]: پیش از انتشار هر سایت یا اپی که با هوش مصنوعی ساخته شده، جلسه با یک فهرست ثابت همه‌ی محافظت‌های پایه را اجرا، آزمون و گزارش کند.
+
+## Tools by verdict
+
+Assess (👀) items are omitted here; see catalog/README.md.
+
+### Adopt (✅ use)
+- [Blender](catalog/blender.md) (3d, GPL-3.0-or-later): نرم‌افزار سه‌بعدی رایگان و کاملاً اسکریپت‌پذیر با پایتون؛ مدل پارامتری و رندر برای وب، شبکه‌های اجتماعی و بازسازی معماری
+- [Drei](catalog/drei.md) (3d, MIT): مجموعه‌ی کمکی React Three Fiber: کنترل، بارگذاری، محیط، متن
+- [model-viewer (Google)](catalog/model-viewer.md) (3d, Apache-2.0): نمایش مدل سه‌بعدی در صفحه و واقعیت افزوده در گوشی با یک تگ HTML
+- [React Postprocessing](catalog/react-postprocessing.md) (3d, MIT): افکت‌های پس‌پردازش (bloom، عمق میدان، نویز) برای R3F
+- [React Three Fiber](catalog/react-three-fiber.md) (3d, MIT): نوشتن صحنه‌ی Three.js به‌صورت کامپوننت React
+- [React Three Rapier](catalog/react-three-rapier.md) (3d, MIT): موتور فیزیک Rapier (WASM) برای React Three Fiber
+- [Three.js](catalog/threejs.md) (3d, MIT): کتابخانه‌ی استاندارد سه‌بعدی و WebGL در مرورگر
+- [Anime.js](catalog/animejs.md) (animation, MIT): کتابخانه‌ی سبک انیمیشن JavaScript؛ جایگزین GSAP
+- [dotLottie Web](catalog/dotlottie-web.md) (animation, MIT): پخش‌کننده‌ی رسمی LottieFiles برای فایل‌های ‎.lottie و JSON در وب
+- [GSAP](catalog/gsap.md) (animation, Standard No Charge License (رایگان، تجاری مجاز)): کتابخانه‌ی انیمیشن وب: تایم‌لاین، اسکرول (ScrollTrigger)، تیتر خط‌به‌خط (SplitText)
+- [Lenis](catalog/lenis.md) (animation, MIT): اسکرول نرم و روان برای سایت‌های نمایشی
+- [Motion (Framer Motion)](catalog/motion.md) (animation, MIT): انیمیشن و ریزحرکت در React؛ نام قبلی Framer Motion
+- [Electron](catalog/electron.md) (app-frameworks, MIT): اپ دسکتاپ با HTML و JS؛ Chromium و Node درون اپ
+- [Expo (React Native)](catalog/expo.md) (app-frameworks, MIT): چارچوب React Native برای iOS، Android و وب با ساخت ابری EAS
+- [Flutter](catalog/flutter.md) (app-frameworks, BSD-3-Clause): فریم‌ورک Google برای یک کد روی iOS، Android، Windows، macOS، Linux و وب
+- [flutter_animate](catalog/flutter-animate.md) (app-frameworks, BSD-3-Clause): بسته‌ی Flutter برای انیمیشن زنجیره‌ای کوتاه (fadeIn، slide، scale، تأخیر پلکانی) با یک خط
+- [flutter_map](catalog/flutter-map.md) (app-frameworks, BSD-3-Clause): نقشه‌ی متن‌باز Flutter با کاشی دلخواه، خط مسیر، نشانگر ویجتی؛ بدون کلید Google
+- [uv (نصب Python خصوصی)](catalog/uv.md) (app-publishing, MIT یا Apache-2.0): مدیر بسته و نسخه‌ی Python از Astral؛ بدون دسترسی ادمین یک Python کامل در پوشه‌ی برنامه نصب می‌کند
+- [Android SDK و Android CLI (خط فرمان، بدون Android Studio)](catalog/android-sdk-cli.md) (app-testing, مجوز Android SDK (باید پذیرفته شود)): نصب Android SDK، ساخت و شبیه‌ساز فقط با ابزار خط فرمان رسمی؛ Android CLI تازه‌ی Google برای عامل‌ها
+- [Dart و Flutter MCP Server](catalog/dart-mcp-server.md) (app-testing, BSD-3-Clause): MCP رسمی تیم Dart که عامل را به اپ Flutter در حال اجرا وصل می‌کند
+- [Maestro و Maestro MCP](catalog/maestro.md) (app-testing, Apache-2.0): تست رابط اپ موبایل با فایل YAML و MCP داخلی برای عامل
+- [Mixkit (ویدیو و صدای رایگان)](catalog/mixkit.md) (assets-media, Mixkit Video License (https://mixkit.co/license/#videoFree)): کلیپ ویدیوی استوک رایگان با مجوز Mixkit، قابل‌خواندن با اسکریپت
+- [NASA Visible Earth (Blue Marble، Black Marble)](catalog/nasa-visible-earth.md) (assets-media, معمولاً بدون کپی‌رایت در آمریکا (اثر دولت آمریکا)؛ تصویر شخص ثالث جدا): نقشه‌های کره‌ی زمین NASA (روز، شب، ابر، ارتفاع) برای صحنه‌ی سه‌بعدی؛ معمولاً بدون کپی‌رایت در آمریکا
+- [Poly Haven](catalog/poly-haven.md) (assets-media, CC0): تکسچر، HDRI و مدل سه‌بعدی رایگان با مجوز CC0
+- [Satori](catalog/satori.md) (assets-media, MPL-2.0): تبدیل HTML و JSX به SVG برای ساخت تصویر اشتراک‌گذاری (OG)
+- [Sentinel-2 cloudless (EOxCloudless)](catalog/sentinel-2-cloudless.md) (assets-media, 2016: CC BY 4.0؛ 2018-2025: CC BY-NC-SA 4.0؛ تجاری سال‌های تازه: مجوز پولی EOX): تصویر ماهواره‌ای بدون ابر از کل زمین؛ فقط لایه‌ی ۲۰۱۶ برای کار تجاری آزاد است
+- [Squoosh](catalog/squoosh.md) (assets-media, Apache-2.0): فشرده‌سازی و تبدیل تصویر در خود مرورگر (WebP، AVIF، JPEG XL و…) بدون فرستادن فایل
+- [SVGO](catalog/svgo.md) (assets-media, MIT): بهینه‌سازی و کوچک کردن فایل‌های SVG
+- [Unsplash](catalog/unsplash.md) (assets-media, Unsplash License): عکس رایگان با مجوز Unsplash؛ تجاری آزاد، ولی لوگو و چهره‌ی داخل عکس جدا است
+- [Wikimedia Commons (تصویر تاریخی)](catalog/wikimedia-commons.md) (assets-media, هر فایل مجوز خودش را دارد): تصویر دامنه‌ی عمومی و CC0 از API ویکی‌مدیا برای ویدیوهای تاریخی
+- [ElevenLabs (متن به صدا)](catalog/elevenlabs-tts.md) (audio-voice, سرویس تجاری): تبدیل متن به گفتار؛ فارسی فقط در مدل‌های v3 و v4
+- [faster-whisper](catalog/faster-whisper.md) (audio-voice, MIT): اجرای محلی و سریع Whisper برای تبدیل گفتار به متن
+- [Openverse](catalog/openverse.md) (audio-voice, هر فایل جدا (CC0، CC BY، …)): جستجوی ۵.۲ میلیون فایل صوتی آزاد با API رایگان بدون کلید
+- [whisper.cpp](catalog/whisper-cpp.md) (audio-voice, MIT): نسخه‌ی C و C++ از Whisper برای اجرای کاملاً آفلاین
+- [هم‌ترازی متن و صدا با wav2vec2 XLSR-53](catalog/wav2vec2-xlsr-aligner.md) (audio-voice, Apache-2.0 (مدل‌ها)؛ torchaudio BSD): زمان دقیق هر کلمه‌ی متنی که داریم، روی صدا؛ فارسی، عربی، انگلیسی و ۹ زبان دیگر، Apache-2.0
+- [axe-core (و @axe-core/playwright)](catalog/axe-core.md) (browser-testing, MPL-2.0): بررسی خودکار قواعد دسترسی‌پذیری WCAG داخل تست Playwright
+- [Chrome DevTools MCP](catalog/chrome-devtools-mcp.md) (browser-testing, Apache-2.0): Claude را به Chrome وصل می‌کند: تست سرعت، Lighthouse، شبکه، کنسول، اسکرین‌شات
+- [html-validate](catalog/html-validate.md) (browser-testing, MIT): بررسی آفلاین درستی HTML و چند قاعده‌ی دسترسی‌پذیری
+- [jsQR](catalog/jsqr.md) (browser-testing, Apache-2.0): کدخوان QR با جاوااسکریپت خالص؛ برای آزمودن این‌که کدهای چاپی واقعاً خوانده می‌شوند و محتوای درست دارند
+- [Lighthouse CI](catalog/lighthouse-ci.md) (browser-testing, Apache-2.0): اجرای خودکار Lighthouse با حد قبولی برای عملکرد، سئو و دسترسی‌پذیری
+- [Playwright](catalog/playwright.md) (browser-testing, Apache-2.0): خودکارسازی مرورگر؛ اسکرین‌شات فریم‌به‌فریم و کنترل زمان با Clock API
+- [Android Skills (Google)](catalog/android-skills.md) (claude-code-tooling, Apache-2.0): مخزن رسمی Google از skillهای استاندارد برای عامل‌ها در کارهای Android مثل تحلیل R8 و انتشار
+- [anthropics/skills (skillهای رسمی)](catalog/anthropic-skills.md) (claude-code-tooling, هر skill مجوز خودش (بیشتر Apache-2.0؛ skillهای سند source-available)): مخزن رسمی Agent Skills از Anthropic؛ مرجع ساخت skill و skillهای سند (docx، pdf، pptx، xlsx)
+- [claude-code-setup (پلاگین رسمی)](catalog/claude-code-setup.md) (claude-code-tooling, Apache-2.0): پلاگین رسمی فقط‌خواندنی که برای هر پروژه hook، skill، MCP و زیرعامل پیشنهاد می‌دهد
+- [Context7](catalog/context7.md) (claude-code-tooling, MIT): مستندات به‌روز کتابخانه‌ها برای عامل؛ پلاگین رسمی بیرونی Claude Code
+- [Frontend Design (افزونه‌ی رسمی Anthropic)](catalog/frontend-design.md) (claude-code-tooling, Apache-2.0): مهارت رسمی Anthropic برای رابط وب متمایز و باکیفیت، به‌جای ظاهر کلیشه‌ای هوش مصنوعی
+- [GSAP Skills (رسمی)](catalog/gsap-skills.md) (claude-code-tooling, MIT): مهارت‌های رسمی GreenSock که به Claude استفاده‌ی درست از GSAP را یاد می‌دهند
+- [Repomix](catalog/repomix.md) (claude-code-tooling, MIT): کل مخزن را در یک فایل مناسب مدل زبانی بسته‌بندی می‌کند؛ محلی و امن
+- [ccusage](catalog/ccusage.md) (cost-tokens, MIT): گزارش مصرف توکن و هزینه‌ی تخمینی Claude Code از لاگ‌های محلی، بر اساس روز، جلسه و بازه‌ی ۵ ساعته
+- [ExcelJS](catalog/exceljs.md) (data-documents, MIT): خواندن و ساختن فایل اکسل (xlsx) با Node، با فرمول، قالب‌بندی و چند برگه؛ نگهداری کند شده
+- [LibreOffice (حالت headless)](catalog/libreoffice-headless.md) (data-documents, MPL-2.0): تبدیل و بازمحاسبه‌ی فایل اکسل و ورد از خط فرمان، بدون پنجره؛ برای کنترل خروجی اسکریپت
+- [LocalSend](catalog/localsend.md) (data-documents, Apache-2.0): انتقال فایل بین دستگاه‌ها در شبکه‌ی محلی، جایگزین AirDrop برای همه‌ی سیستم‌عامل‌ها
+- [MarkItDown (Microsoft)](catalog/markitdown.md) (data-documents, MIT): تبدیل PDF، Word، اکسل، پاورپوینت و تصویر به Markdown برای مدل
+- [pdf.js (pdfjs-dist)](catalog/pdfjs-dist.md) (data-documents, Apache-2.0): کتابخانه‌ی Mozilla برای خواندن PDF؛ در Node متن را با مختصات و خط‌های جدول می‌دهد
+- [Poppler (pdftoppm، pdftotext، pdfinfo)](catalog/poppler.md) (data-documents, GPL-2.0 یا GPL-3.0): ابزارهای خط فرمان PDF: تصویر هر صفحه، متن خام و تعداد صفحه؛ تا Claude خودش PDF را ببیند
+- [pyHanko](catalog/pyhanko.md) (data-documents, MIT): کتابخانه‌ی پایتون برای امضا و اعتبارسنجی امضای دیجیتال PDF؛ ما فقط برای آزمون درستی امضاها به کار بردیم
+- [Firebase](catalog/firebase.md) (database-backend, شرایط Google Cloud): سکوی بک‌اند Google: Auth، Firestore، Storage، FCM، Crashlytics، Remote Config
+- [H3 (شبکه‌ی شش‌ضلعی Uber)](catalog/h3.md) (database-backend, Apache-2.0): نمایه‌ی جغرافیایی شش‌ضلعی برای جستجوی نزدیک‌ترین، منطقه‌ی تحویل و نقشه‌ی گرمایی
+- [Medusa](catalog/medusa.md) (database-backend, MIT (بخش Enterprise جدا)): موتور فروشگاه متن‌باز Node.js با API فروشگاه و مدیریت، پنل مدیریت و ماژول‌های جداشدنی؛ نسخه‌ی 2.21.2 با داده‌ی واقعی یک مغازه آزموده شد
+- [Meilisearch](catalog/meilisearch.md) (database-backend, MIT (بخش Enterprise با BUSL-1.1)): موتور جستجوی متن‌باز و سریع با مترادف، غلط تایپی و یکسان‌سازی عربی؛ نسخه‌ی 1.54.3 برای جستجوی عربی کاتالوگ انگلیسی یک مغازه آزموده شد
+- [Awwwards](catalog/awwwards.md) (design-inspiration, فقط الهام (تصاویر مال صاحبان سایت‌هاست)): جایزه‌ی داوری‌شده‌ی سایت‌ها؛ فیلتر بر اساس صنعت و تکنولوژی (WebGL، GSAP…)
+- [Component Gallery](catalog/component-gallery.md) (design-inspiration, فقط مرجع (لینک به سیستم‌های طراحی دیگران)): مرجع ۶۰ نوع کامپوننت در ۹۵ سیستم طراحی با ۲٬۶۷۱ نمونه
+- [Excalidraw](catalog/excalidraw.md) (design-inspiration, MIT): تخته‌ی طراحی دست‌آزاد برای نمودار، جریان صفحه و طرح اولیه
+- [Godly (حالا Recent)](catalog/godly-recent.md) (design-inspiration, فقط الهام (تصاویر مال صاحبان سایت‌هاست)): گالری منتخب طراحی وب، ویدیوی لانچ، تصویر OG و آیکون اپ
+- [Minimal Gallery](catalog/minimal-gallery.md) (design-inspiration, فقط الهام (تصاویر مال صاحبان سایت‌هاست)): گالری دست‌چین سایت‌های مینیمال از ۲۰۱۳، دسته‌بندی بر اساس نوع کسب‌وکار
+- [Zoho Mail](catalog/zoho-mail.md) (email-domain, سرویس تجاری): ایمیل شرکتی روی دامنه‌ی خود؛ طرح رایگان تا ۵ کاربر بدون IMAP، طرح پولی با IMAP و رمز مخصوص برنامه
+- [Google Fonts](catalog/google-fonts.md) (fonts, فونت‌های آزاد (اغلب SIL OFL)): فونت رایگان لاتین و فارسی (Vazirmatn، Estedad…) با مجوز تجاری
+- [IranNastaliq (فونت نستعلیق)](catalog/irannastaliq.md) (fonts, مخزن: SIL OFL 1.1؛ مجوز اصلی SCICT ❓): فونت نستعلیق فارسی با شکل حرف‌های درست فارسی، آزموده روی ویدیو
+- [Caddy](catalog/caddy.md) (hosting-deploy, Apache-2.0): وب‌سرور و reverse proxy با HTTPS خودکار برای سایت روی سرور خودمان، جلوی Next.js
+- [Cloudflare Access (Zero Trust)](catalog/cloudflare-access.md) (hosting-deploy, سرویس تجاری): قفل کردن پنل مدیریت پشت ورود با کد ایمیلی؛ رایگان تا ۵۰ کاربر
+- [Cloudflare Pages](catalog/cloudflare-pages.md) (hosting-deploy, سرویس تجاری): میزبانی سایت با اتصال Git، Functions، D1 و R2؛ طرح رایگان برای سایت تجاری مجاز است
+- [Cloudflare Tunnel (cloudflared)](catalog/cloudflare-tunnel.md) (hosting-deploy, Apache-2.0): آدرس موقت HTTPS برای سایت در حال ساخت روی کامپیوتر خودت، بدون حساب
+- [Cloudflare Turnstile](catalog/cloudflare-turnstile.md) (hosting-deploy, سرویس رایگان): ضد ربات رایگان برای فرم‌ها، بدون معمای تصویری؛ توکن در سرور بررسی می‌شود
+- [Vercel](catalog/vercel.md) (hosting-deploy, سرویس تجاری): میزبانی و انتشار سایت با پیش‌نمایش برای هر تغییر؛ طرح رایگان فقط غیرتجاری
+- [3dicons](catalog/3dicons.md) (icons-logos, CC0 (نسخه‌ی ۱)): آیکون‌های سه‌بعدی متن‌باز ساخته‌شده در Blender؛ نسخه‌ی ۱ با مجوز CC0
+- [Phosphor Icons](catalog/phosphor-icons.md) (icons-logos, MIT): مجموعه‌ی آیکون متن‌باز MIT با شش وزن، از جمله duotone، برای React و وب
+- [Canva](catalog/canva.md) (image-generation, مجوز محتوای Canva): ابزار طراحی با Connect API؛ خودکارسازی قالب فقط در Enterprise
+- [Google Nano Banana (Gemini Image)](catalog/nano-banana.md) (image-generation, شرایط Gemini API): مدل تولید تصویر Google در Gemini API؛ ارزان، با واترمارک SynthID
+- [llama.cpp (llama-server)](catalog/llama-cpp.md) (local-ai, MIT): موتور اجرای محلی مدل زبانی (فایل GGUF) روی پردازنده یا کارت گرافیک، با سرور HTTP سازگار با OpenAI
+- [Ollama](catalog/ollama.md) (local-ai, MIT): اجراکننده‌ی محلی مدل‌های زبانی باز با API ساده، خروجی ساختاریافته با JSON Schema و فراخوانی ابزار
+- [cs-video-courses](catalog/cs-video-courses.md) (research-tools, بدون فایل مجوز (هر دوره شرایط خودش)): فهرست حدود ۷۸۰ دوره‌ی دانشگاهی رایگان علوم کامپیوتر با ویدیو
+- [molab (marimo)](catalog/molab.md) (research-tools, Apache-2.0 (marimo و marimo-pair)؛ خود سرویس: شرایط سایت): نوت‌بوک ابری رایگان marimo با ۴ CPU، ۳۲ گیگابایت RAM و GPU قوی (RTX Pro 6000)، که Claude Code می‌تواند به آن وصل شود
+- [SearXNG](catalog/searxng.md) (research-tools, AGPL-3.0): موتور فراجستجوی متن‌باز که خودت اجرا می‌کنی؛ جستجوی رایگان با خروجی JSON برای اسکریپت و عامل
+- [Star History](catalog/star-history.md) (research-tools, MIT): نمودار تاریخچه‌ی ستاره‌های مخزن‌های گیت‌هاب
+- [Bing Webmaster Tools](catalog/bing-webmaster-tools.md) (seo-search, سرویس رایگان): ثبت سایت در Bing که منبع Copilot و بخشی از جستجوی ChatGPT است
+- [Google Business Profile](catalog/google-business-profile.md) (seo-search, سرویس رایگان): پروفایل کسب‌وکار در Google Maps و جستجوی محلی؛ مهم‌ترین منبع گوگل و Gemini برای کسب‌وکار محلی
+- [Google Search Console](catalog/google-search-console.md) (seo-search, سرویس رایگان): ثبت سایت در گوگل، ارسال sitemap و گزارش نمایه و جستجو
+- [IndexNow](catalog/indexnow.md) (seo-search, پروتکل باز): خبر دادن فوری تغییر صفحه‌ها به Bing، Yandex، Naver، Seznam و Yep
+- [Astro](catalog/astro.md) (site-generators, MIT): فریم‌ورک سایت محتوایی با خروجی HTML و جزیره‌های تعاملی؛ مسیریابی چندزبانه‌ی داخلی؛ از ۲۰۲۶ متعلق به Cloudflare
+- [Eleventy (11ty)](catalog/eleventy.md) (site-generators, MIT): سازنده‌ی سایت ایستای ساده و سریع؛ خروجی HTML خالص، مناسب سایت شرکتی چندزبانه
+- [Next.js](catalog/nextjs.md) (site-generators, MIT): فریم‌ورک React از Vercel برای سایت و نرم‌افزار وب با رندر سرور، ساخت ایستا و API؛ باید همیشه به‌روز بماند
+- [Nuxt](catalog/nuxt.md) (site-generators, MIT): چارچوب سمت سرور و ساخت ایستا برای Vue؛ برای پروژه یا تیمی که روی Vue است
+- [Svelte و SvelteKit](catalog/svelte.md) (site-generators, MIT): چارچوب UI کامپایلری (Svelte 5) و چارچوب اپ آن (SvelteKit 3)؛ جایگزین Next و Astro وقتی حجم بسته مهم است یا مشتری روی Svelte است
+- [Vite](catalog/vite.md) (site-generators, MIT): ابزار توسعه و build برای وب؛ پایه‌ی Astro و vinext؛ برای داشبورد تک‌منظوره با TypeScript ساده
+- [Buffer](catalog/buffer.md) (social-publishing, سرویس تجاری): ابزار زمان‌بندی پست با API در همه‌ی طرح‌ها
+- [Magic UI](catalog/magic-ui.md) (ui-components, MIT): کامپوننت‌های متحرک React و Tailwind برای لندینگ؛ قابل افزودن با shadcn
+- [mapcn](catalog/mapcn.md) (ui-components, MIT): کامپوننت‌های نقشه برای React بر پایه‌ی MapLibre و shadcn
+- [Motion Primitives](catalog/motion-primitives.md) (ui-components, MIT): کامپوننت‌های متحرک متن‌باز React با Tailwind و Motion
+- [shadcn/ui](catalog/shadcn-ui.md) (ui-components, MIT): کامپوننت‌های React که کدشان مستقیم در پروژه کپی می‌شود
+- [Tailwind CSS](catalog/tailwindcss.md) (ui-components, MIT): CSS با کلاس‌های کوچک کاربردی؛ نسخه‌ی ۴ با پیکربندی در خود CSS، کلاس‌های منطقی برای RTL و نوع rtl:
+- [fal MCP](catalog/fal-mcp.md) (video, شرایط fal): دسترسی به مدل‌های ویدیو و تصویر (Veo، Kling، …) از داخل Claude با OAuth
+- [fal.ai](catalog/fal-ai.md) (video, شرایط هر مدل جدا): پرداخت به‌ازای مصرف برای ده‌ها مدل ویدیو و تصویر در یک صورت‌حساب؛ ارزان‌ترین راه تأییدشده برای H3 و Kling
+- [FFmpeg](catalog/ffmpeg.md) (video, LGPL-2.1+ (بخش‌هایی GPL)): ابزار خط فرمان استاندارد برای ساخت و تبدیل ویدیو؛ فریم‌های PNG را به MP4 تبدیل می‌کند
+- [Gemini Omni Flash (Google)](catalog/gemini-omni-flash.md) (video, شرایط Gemini API): مدل ویدیوی پیشنهادی Google به‌جای پیش‌نمایش‌های Veo 3.1؛ ۹:۱۶، صدای ساخته‌شده، حدود ۰٫۱۰ دلار در ثانیه
+- [Google Flow](catalog/google-flow.md) (video, شرایط Google): استودیوی ویدیوی Google با شخصیت ثابت؛ Omni 1.1 Flash و Veo 3.1
+- [HeyGen MCP](catalog/heygen-mcp.md) (video, شرایط HeyGen): ساخت ویدیوی آواتار سخن‌گو از داخل Claude
+- [HyperFrames (HeyGen)](catalog/hyperframes.md) (video, Apache-2.0): تبدیل HTML، CSS و انیمیشن قابل‌جابه‌جایی به MP4 قطعی؛ افزونه‌ی Claude Code دارد
+- [Kling (Kuaishou)](catalog/kling.md) (video, شرایط Kling): مدل ویدیو Kling 3.0 با صدای بومی
+- [Remotion](catalog/remotion.md) (video, مجوز Remotion (منبع‌باز، نه متن‌باز OSI)): ساخت ویدیو با React؛ رایگان برای فرد، شرکت تا ۳ نفر و غیرانتفاعی
+- [RobustVideoMatting (RVM)](catalog/robust-video-matting.md) (video, GPL-3.0): جداسازی سوژه از پس‌زمینه‌ی ویدیو به‌صورت محلی و رایگان؛ روی GPU هشت‌گیگی کار کرد؛ مجوز GPL-3.0؛ مخزن از ۲۰۲۴ تغییر نکرده است
+- [Wan 2.2 (A14B و TI2V-5B)](catalog/wan-2-2.md) (video, Apache-2.0): مدل ویدیوی بازوزن Apache-2.0؛ نسخه‌ی A14B روی GPU رایگان molab آزموده شد (۵ ثانیه‌ی ۴۸۰p در ۴ دقیقه)؛ بی‌صدا
+- [yt-dlp](catalog/yt-dlp.md) (video, Unlicense): دانلودگر خط فرمان ویدیو و فراداده از یوتیوب، اینستاگرام و صدها سایت؛ نسخه‌ی سیستمی کهنه برای اینستاگرام شکست می‌خورد و نسخه‌ی تازه در venv جواب داد
+
+### Trial (🧪 small test first)
+- [Anatomy (مهارت Claude Code)](catalog/anatomy-skill.md) (3d, MIT): مهارتی که ایده را به شکل ماشین ایزومتریک تعاملی می‌کشد
+- [MCP for Blender](catalog/mcp-for-blender.md) (3d, MIT): اتصال شخص ثالث Claude به Blender (نام قبلی blender-mcp) که صحنه را با پایتون می‌سازد؛ سه‌بعدی از روی عکس را به سرویس‌های دیگر می‌سپارد؛ کد دلخواه اجرا می‌کند
+- [Google Workspace CLI (gws)](catalog/google-workspace-cli.md) (agents-memory, Apache-2.0): CLI سازمان googleworkspace برای دسترسی عامل به Gmail، تقویم و Drive؛ رسماً پشتیبانی نمی‌شود
+- [n8n](catalog/n8n.md) (agents-memory, Sustainable Use (fair-code، متن‌باز OSI نیست)): خودکارسازی جریان کار و عامل هوش مصنوعی بدون کدنویسی سنگین؛ خودمیزبان
+- [Circle Loaders](catalog/circle-loaders.md) (animation, CC0): ۲۴ loader دایره‌ای SVG بدون JavaScript با مجوز CC0
+- [CSS Text Effects (Colorion)](catalog/css-text-effects.md) (animation, MIT (طبق صفحه)): ۱۱۷ افکت متن با CSS خالص؛ اعلام MIT در صفحه
+- [Epic Easing](catalog/epic-easing.md) (animation, ❓ اعلام نشده (خروجی فقط عدد است)): ابزار ساخت منحنی حرکت (cubic-bezier) با خروجی CSS، SCSS و Swift
+- [Hairline](catalog/hairline.md) (animation, MIT): شکل‌های خطی ایزومتریک تعاملی برای React و DOM، با دو مهارت ساخت
+- [Lottielab](catalog/lottielab.md) (animation, شرایط سایت): ویرایشگر انیمیشن Lottie در مرورگر؛ خروجی Lottie فقط در Pro
+- [React Native Skia](catalog/react-native-skia.md) (animation, MIT): گرافیک پرسرعت دوبعدی با Skia در React Native.
+- [Reanimated](catalog/react-native-reanimated.md) (animation, MIT): کتابخانه‌ی اصلی انیمیشن React Native روی رشته‌ی UI.
+- [Thinking Orbs](catalog/thinking-orbs.md) (animation, MIT): نشانگرهای بارگذاری نقطه‌ای «در حال فکر» برای رابط‌های هوش مصنوعی و عامل‌ها؛ React، MIT، بدون WebGL، با پشتیبانی کاهش حرکت
+- [Android Studio](catalog/android-studio.md) (app-frameworks, رایگان (Android Studio؛ شرایط Google)): محیط رسمی Google برای Android؛ نسخه‌ی Rabbit 2 بیش از ۴۰ عامل کدنویسی (Claude Agent، Codex، Junie، Antigravity) را از راه ACP وصل می‌کند
+- [flutter_secure_storage](catalog/flutter-secure-storage.md) (app-frameworks, BSD-3-Clause): بسته‌ی Flutter برای نگه داشتن توکن ورود در Keychain (iOS) و رمزنگاری با کلید Keystore (Android)
+- [Gesture Handler](catalog/react-native-gesture-handler.md) (app-frameworks, MIT): لمس و اشاره‌ی بومی برای React Native.
+- [Tauri](catalog/tauri.md) (app-frameworks, Apache-2.0 یا MIT): اپ دسکتاپ و موبایل با WebView سیستم و هسته‌ی Rust؛ حجم کم
+- [VisionCamera](catalog/vision-camera.md) (app-frameworks, MIT): کتابخانه‌ی دوربین پرکارایی برای React Native.
+- [Codemagic](catalog/codemagic.md) (app-publishing, سرویس تجاری): CI برای ساخت و انتشار اپ موبایل، قوی در Flutter
+- [EAS (Expo Application Services)](catalog/eas.md) (app-publishing, سرویس Expo): ساخت ابری، امضا و ارسال اپ Expo به فروشگاه‌ها
+- [RevenueCat](catalog/revenuecat.md) (app-publishing, MIT): لایه‌ی اشتراک و خرید درون‌برنامه برای iOS و Android.
+- [Detox](catalog/detox.md) (app-testing, MIT): تست end-to-end خاکستری برای React Native از Wix
+- [Expo MCP](catalog/expo-mcp.md) (app-testing, سرویس Expo): سرور MCP راه دور رسمی Expo: مستندات، ساخت EAS، کنترل شبیه‌ساز
+- [expo-device-hub](catalog/expo-device-hub.md) (app-testing, MIT (650 Industries) + بخش‌های vendored با Apache-2.0): افزونه‌ی DevTools اکسپو برای دیدن و کنترل شبیه‌ساز در مرورگر
+- [Flashlight](catalog/flashlight.md) (app-testing, MIT): سنجش کارایی اپ Android با نمره، مانند Lighthouse برای موبایل.
+- [mcp_flutter (Flutter MCP Toolkit)](catalog/mcp-flutter.md) (app-testing, MIT): سرور MCP و بسته‌ی Flutter برای دیدن، لمس، hot reload و خواندن لاگ اپ Flutter در حال اجرا؛ MIT، نگهدارنده‌ی تک‌نفره
+- [mobile-mcp](catalog/mobile-mcp.md) (app-testing, Apache-2.0): MCP برای کنترل شبیه‌ساز iOS، امولاتور Android و دستگاه واقعی
+- [Patrol](catalog/patrol.md) (app-testing, Apache-2.0): توسعه‌ی تست یکپارچه‌ی Flutter برای لمس دیالوگ‌های بومی
+- [Promptfoo](catalog/promptfoo.md) (app-testing, MIT): آزمون و ارزیابی پرامپت و عامل هوش مصنوعی در CI، با red-team
+- [Kitbitz](catalog/kitbitz.md) (assets-media, CC0): بیش از ۲٬۰۰۰ تصویرسازی دست‌کشیده SVG و PNG با مجوز CC0
+- [Pryzm](catalog/pryzm.md) (assets-media, شرایط سایت): سازنده‌ی پس‌زمینه‌ی گرادیانت، شیشه‌ای و دانه‌دار متحرک؛ خروجی تصویر، ویدیو یا کد
+- [ACE-Step 1.5](catalog/ace-step.md) (audio-voice, MIT (کد و وزن‌ها)): مدل محلی ساخت موسیقی از پرامپت (بی‌کلام یا با شعر، تا ۱۰ دقیقه)، MIT؛ روی کارت ۸ گیگ اجرا می‌شود؛ برای موسیقی پس‌زمینه‌ی ویدیو
+- [Azure AI Speech (صدای عصبی)](catalog/azure-speech.md) (audio-voice, سرویس تجاری Microsoft): صدای ابری با فارسی (fa-IR) و عربی امارات (ar-AE)؛ تنها موتوری که طول دقیق صدا را می‌گیرد، با زمان هر کلمه
+- [ElevenLabs Scribe](catalog/elevenlabs-scribe.md) (audio-voice, سرویس تجاری): سرویس ابری تبدیل گفتار به متن با رده‌ی دقت اعلام‌شده برای فارسی
+- [Fish Audio Drama 3](catalog/fish-audio-drama-3.md) (audio-voice, Fish Audio Community License v1.0 (محدود)): تبدیل متن به صدا با احساس طبیعی؛ وزن‌های آزاد با مجوز محدود
+- [Higgs Audio v3 TTS (Boson AI)](catalog/higgs-audio-v3.md) (audio-voice, پژوهشی و غیرتجاری؛ استفاده‌ی تجاری با قرارداد جدا از Boson AI (contact@boson.ai)): بهترین صدای فارسی محلیِ آزموده (CER ۰ تا ۵٪، دو برابر سریع‌تر از پخش روی RTX 4060)؛ ولی فقط غیرتجاری، کار مشتری مجوز Boson AI می‌خواهد
+- [MOSS-TTS (OpenMOSS)](catalog/moss-tts.md) (audio-voice, Apache-2.0 (کد و وزن‌ها؛ فایل LICENSE در مخزن و برچسب مدل در Hugging Face)): تبدیل متن به گفتار محلی با مجوز تجاری (Apache-2.0)؛ فارسی و عربی بومی، شبیه‌سازی صدا؛ آزموده روی RTX 4060
+- [OmniVoice (k2-fsa)](catalog/omnivoice.md) (audio-voice, کد Apache-2.0؛ وزن‌ها CC-BY-NC؛ توکنایزر صدا Boson Higgs Audio 2 Community License): تبدیل متن به گفتار و شبیه‌سازی صدا برای ۶۰۰+ زبان، محلی؛ کد Apache-2.0 ولی وزن‌ها غیرتجاری (CC-BY-NC)
+- [Suno](catalog/suno.md) (audio-voice, تجاری فقط در طرح پولی): ساخت آهنگ از متن؛ Suno v6 با همکاری Warner/BMG/Believe؛ حق تجاری و مالکیت فقط در طرح پولی
+- [transcribe.cpp](catalog/transcribe-cpp.md) (audio-voice, MIT): کتابخانه‌ی C/C++ تشخیص گفتار روی ggml با چندین خانواده مدل و بک‌اند CUDA/Vulkan/Metal
+- [VoxCPM2 (OpenBMB)](catalog/voxcpm2.md) (audio-voice, Apache-2.0): مدل TTS دو میلیاردی Apache-2.0 با ۳۰ زبان (عربی دارد، فارسی ندارد)، خروجی ۴۸ کیلوهرتز، طراحی و شبیه‌سازی صدا؛ حدود ۸ گیگ VRAM
+- [WhisperX](catalog/whisperx.md) (audio-voice, BSD-2-Clause): Whisper با هم‌ترازی دقیق زمان کلمه و تشخیص گوینده
+- [agent-browser (Vercel Labs)](catalog/agent-browser.md) (browser-testing, Apache-2.0): CLI خودکارسازی مرورگر برای عامل‌ها، کم‌مصرف‌تر از MCP مرورگر
+- [Playwright MCP](catalog/playwright-mcp.md) (browser-testing, Apache-2.0): خودکارسازی مرورگر برای Claude با درخت دسترسی‌پذیری؛ چند مرورگر
+- [Sentry](catalog/sentry.md) (browser-testing, FSL (کد سرور)؛ SDKها MIT): گزارش خطا و کارایی با منطقه‌ی داده‌ی اروپا
+- [W3C Nu HTML Checker](catalog/nu-html-checker.md) (browser-testing, MIT): اعتبارسنج مرجع W3C برای HTML؛ سرویس آنلاین یا اجرای محلی
+- [agents-cli](catalog/google-agents-cli.md) (claude-code-tooling, Apache-2.0): ابزار و مهارت‌های رسمی گوگل برای ساخت و استقرار عامل‌ها روی Gemini و Google Cloud
+- [Appllama Skills](catalog/appllama-skills.md) (claude-code-tooling, MIT): دو اسکیل متنی برای طراحی صفحه‌ی بومی Expo و React Native؛ اسکیل طراحی بدون MCP کار می‌کند و اسکیل پژوهش به MCP پولی Appllama نیاز دارد.
+- [Callstack Agent Skills](catalog/callstack-agent-skills.md) (claude-code-tooling, MIT): اسکیل‌های React Native از Callstack: بهترین شیوه، ارتقا، ناوبری و GitHub Actions.
+- [Claude Agent SDK](catalog/claude-agent-sdk.md) (claude-code-tooling, SEE LICENSE IN README.md (شرایط تجاری Anthropic؛ متن‌باز نیست)): کتابخانه‌ی رسمی Anthropic برای ساخت عامل مستقل داخل محصول خودمان با همان موتور Claude Code
+- [Expo Skills](catalog/expo-skills.md) (claude-code-tooling, MIT): مخزن رسمی skillها و پلاگین Claude Code از Expo برای ساخت، بیلد و انتشار اپ‌های Expo
+- [Gemini CLI](catalog/gemini-cli.md) (claude-code-tooling, Apache-2.0): عامل ترمینالی رسمی گوگل برای Gemini
+- [GitHub MCP Server](catalog/github-mcp-server.md) (claude-code-tooling, MIT): سرور MCP رسمی GitHub برای issue، PR و مخزن
+- [Instagram Agent FA](catalog/instagram-agent-fa.md) (claude-code-tooling, MIT): بازنویسی فارسی مهارت‌های اینستاگرام با ۲۷ قلاب فارسی که نیم‌فاصله و نشانه‌ی جهت را نگه می‌دارد
+- [Instagram Agent Skill](catalog/instagram-agent-skill.md) (claude-code-tooling, MIT): ۱۳ مهارت Claude Code برای سناریوی ریلز، کپشن، کاروسل، برنامه و پیش‌نویس پاسخ اینستاگرام؛ محلی، بدون انتشار
+- [Instagram Skills (sergebulaev)](catalog/instagram-skills-sergebulaev.md) (claude-code-tooling, MIT): نه مهارت اینستاگرام شامل بهینه‌ساز پروفایل و برنامه‌ی هفتگی؛ پیش‌فرض فقط پیش‌نویس
+- [knowledge-work-plugins (رسمی)](catalog/knowledge-work-plugins.md) (claude-code-tooling, Apache-2.0): پلاگین‌های رسمی Anthropic برای بازاریابی، طراحی، حقوقی و مالی در Cowork و Claude Code
+- [Marketing Skills](catalog/marketingskills.md) (claude-code-tooling, MIT): مجموعه‌ی skill بازاریابی (نرخ تبدیل، متن، سئو، ایمیل) برای Claude Code
+- [Motion Design Skill (LottieFiles)](catalog/motion-design-skill.md) (claude-code-tooling, MIT): مهارت متنی اصول طراحی حرکت برای عامل‌ها: زمان‌بندی، easing، چیدمان حرکت، اصول دیزنی
+- [Motion Prompt](catalog/motion-prompt.md) (claude-code-tooling, MIT): گالری ۱۲۰ نمونه‌ی متحرک با نام، پرامپت و کد Canvas؛ مهارت انتخاب از گالری
+- [ntfy](catalog/ntfy.md) (claude-code-tooling, Apache-2.0 یا GPLv2 (دوگانه)): فرستادن اعلان به گوشی و دسکتاپ با یک درخواست HTTP؛ سرور عمومی ntfy.sh یا سرور خودت با Docker
+- [OpenCode](catalog/opencode.md) (claude-code-tooling, MIT): عامل کدنویسی متن‌باز ترمینالی با ارائه‌دهنده‌های مختلف و مدل محلی
+- [Ponytail](catalog/ponytail.md) (claude-code-tooling, MIT): افزونه‌ی Claude Code که عامل را به ساده‌ترین راه‌حل لازم وادار می‌کند؛ به‌اضافه‌ی بازبینی، ممیزی و تابلوی هزینه
+- [Prompt Master](catalog/prompt-master.md) (claude-code-tooling, MIT): اسکیل متنی Claude که ایده‌ی خام را به پرامپت آماده برای یک ابزار مشخص (Midjourney، مدل ویدیو، Cursor و…) تبدیل می‌کند
+- [prompts.chat (Awesome ChatGPT Prompts)](catalog/prompts-chat.md) (claude-code-tooling, MIT (code) + CC0 1.0 (prompt data)): کتابخانه‌ی باز و جمعی پرامپت (کد، نوشتن، تصویر، ویدیو) با سایت، سرور MCP و پلاگین رسمی Claude Code؛ کد MIT و متن پرامپت‌ها CC0
+- [skill-scanner](catalog/cisco-skill-scanner.md) (claude-code-tooling, Apache-2.0): اسکنر امنیتی «بهترین تلاش» برای مهارت‌های عامل (تزریق پرامپت، نشت داده، کد مخرب)
+- [SkillSpector (NVIDIA)](catalog/skillspector.md) (claude-code-tooling, Apache-2.0): اسکنر امنیتی skill عامل‌ها: تزریق دستور، نشت داده، زنجیره‌ی تأمین
+- [Vercel Skills (npx skills)](catalog/vercel-skills.md) (claude-code-tooling, MIT): CLI نصب skill مشترک برای عامل‌های مختلف؛ skill یعنی کدی که با دسترسی عامل اجرا می‌شود
+- [Video Shotcraft](catalog/video-shotcraft.md) (claude-code-tooling, Apache-2.0 (کد)؛ صداها بیشتر Mixkit؛ Remotion مجوز خودش): مهارت Claude Code برای ویدیوی محصول سینمایی با Remotion: ۱۵۲ کارت نما، قالب آماده، صدا و موسیقی؛ رندر محلی آزموده شد
+- [مهارت‌های طراحی به سبک اپل (emilkowalski و dickwu)](catalog/apple-design-skills.md) (claude-code-tooling, MIT (emilkowalski)؛ بدون مجوز (dickwu)): دو مهارت Claude برای بازبینی رابط و حرکت به سبک اپل؛ یکی MIT، یکی بدون مجوز
+- [Claude-Code-Usage-Monitor](catalog/claude-code-usage-monitor.md) (cost-tokens, MIT): داشبورد زنده‌ی مصرف در ترمینال با پیش‌بینی زمان رسیدن به سقف طرح
+- [claude-token-efficient](catalog/claude-token-efficient.md) (cost-tokens, MIT): یک CLAUDE.md کوتاه برای پاسخ‌های کوتاه‌تر؛ اثر واقعی کم و فقط روی خروجی
+- [CodeBurn](catalog/codeburn.md) (cost-tokens, MIT): ردیاب محلی مصرف توکن و هزینه برای ده‌ها عامل کدنویسی (README: ۴۲ یکپارچه‌سازی)
+- [Context Mode](catalog/context-mode.md) (cost-tokens, Elastic License 2.0 (منبع‌دسترس، نه متن‌باز)): سرور MCP و hook که خروجی بزرگ ابزارها را در پروسه‌ی جدا نگه می‌دارد و فقط نتیجه را به Claude می‌دهد
+- [headroom](catalog/headroom.md) (cost-tokens, Apache-2.0): فشرده‌سازی محلی خروجی ابزار، لاگ و JSON قبل از رسیدن به مدل؛ با امکان برگرداندن اصل
+- [OpenWolf](catalog/openwolf.md) (cost-tokens, AGPL-3.0): hookهای محلی برای فهرست پروژه، یادداشت جلسه و هشدار خواندن تکراری؛ بدون فشرده‌سازی
+- [Data Dubai](catalog/data-dubai.md) (data-documents, Open Data License of Data Dubai): درگاه داده‌ی باز دولت دبی؛ فهرست رسمی فعالیت‌های تجاری DET از آن با خواندن عادی سرور در یک پروژه‌ی واقعی گرفته شد.
+- [agent-skills](catalog/supabase-agent-skills.md) (database-backend, MIT): مهارت‌های رسمی Supabase برای ایجنت‌ها با فرمت agentskills.io
+- [Better Auth](catalog/better-auth.md) (database-backend, MIT): کتابخانه‌ی ورود کاربر TypeScript که روی سرور خودمان و با Postgres یا SQLite خودمان اجرا می‌شود؛ ایمیل و رمز، کد ایمیلی، passkey، ورود دومرحله‌ای، نقش و سازمان
+- [drawDB](catalog/drawdb.md) (database-backend, AGPL-3.0): ویرایشگر نمودار پایگاه داده در مرورگر و خروجی SQL
+- [Genkit Dart](catalog/genkit-dart.md) (database-backend, Apache-2.0): SDK رسمی Genkit (Firebase/گوگل) برای Dart و Flutter: فراخوانی مدل، خروجی ساخت‌یافته، ابزار و عامل با افزونه‌های Google AI، Anthropic، OpenAI و MCP؛ Apache-2.0
+- [MMKV](catalog/react-native-mmkv.md) (database-backend, MIT): ذخیره‌ی کلید-مقدار سریع برای React Native.
+- [Stripe](catalog/stripe.md) (database-backend, شرایط Stripe): درگاه پرداخت جهانی با حساب امارات، قیمت درهمی منتشرشده، حالت آزمایشی سلف‌سرویس و webhook با امضای HMAC
+- [Supabase](catalog/supabase.md) (database-backend, Apache-2.0): پایگاه داده‌ی Postgres، ورود کاربر، ذخیره‌ی فایل و API به‌صورت سرویس؛ با MCP رسمی برای Claude
+- [Tabby](catalog/tabby.md) (database-backend, proprietary): قسطی «الان بخر، بعداً بپرداز» در امارات و عربستان؛ تأیید پرداخت با گرفتن پرداخت از API، webhook فقط خبر است
+- [Tamara](catalog/tamara.md) (database-backend, proprietary): قسطی «الان بخر، بعداً بپرداز» در عربستان و امارات؛ webhook با توکن JWT امضاشده (HS256)
+- [Telr](catalog/telr.md) (database-backend, شرایط Telr): درگاه پرداخت امارات با قیمت منتشرشده، حالت آزمایشی، اعلان امضاشده و SDK رسمی Flutter با ناشر تأییدشده
+- [ZarinPal (زرین‌پال)](catalog/zarinpal.md) (database-backend, شرایط سرویس): درگاه پرداخت ایرانی؛ API نسخه‌ی ۴ ساده است، ولی از بیرون ایران وصل نشد
+- [Zibal (زیبال)](catalog/zibal.md) (database-backend, شرایط سرویس): درگاه پرداخت ایرانی با مرچنت آزمایشی سلف‌سرویس؛ از بیرون ایران وصل نشد
+- [60fps.design](catalog/60fps-design.md) (design-inspiration, شرایط 60fps (فقط مرجع)): بیش از ۲٬۱۰۰ ضبط انیمیشن اپ‌های iOS برای مرجع حرکت؛ MCP پولی
+- [Code and Chill (@_code_and_chill_)](catalog/code-and-chill.md) (design-inspiration, همه‌ی حقوق محفوظ (فروش مجوز، نه مالکیت)): صفحه‌ی اینستاگرام و فروشگاه قالب داشبورد شیشه‌ای متحرک با HTML، CSS و TS؛ دموی زنده برای هر طرح
+- [code.xr (Arastoo)](catalog/code-xr.md) (design-inspiration, کد منبع پولی؛ حقوق محفوظ): پیج طراحی رابط با ده‌ها ریزتعامل و داشبورد (React، Motion، Tailwind)؛ کاتالوگ ایده، کد منبع پولی
+- [CTA Gallery](catalog/cta-gallery.md) (design-inspiration, فقط الهام (تصاویر مال صاحبان سایت‌هاست)): نمونه‌های بخش دعوت به اقدام، فیلتر بر اساس صنعت و حالت روشن یا تیره
+- [Footer Design](catalog/footer-design.md) (design-inspiration, فقط الهام (تصاویر مال صاحبان سایت‌هاست)): گالری فوتر با دسته‌بندی بر اساس نوع و سبک
+- [Kage](catalog/kage.md) (design-inspiration, پرامپت‌ها: تجاری بدون ذکر نام؛ تصاویر مال صاحبانشان): ۵۲۳ طراحی و ۲٬۷۳۶ کامپوننت با پرامپت توصیفی و MCP باز؛ رایگان
+- [Landdding](catalog/landdding.md) (design-inspiration, فقط الهام): گالری روزانه‌ی طراحی سایت با رأی جامعه
+- [Navbar Gallery](catalog/navbar-gallery.md) (design-inspiration, فقط الهام (تصاویر مال صاحبان سایت‌هاست)): گالری منو و ناوبری: کشویی، مگامنو، نوار اعلان، منوی تمام‌صفحه
+- [Penpot](catalog/penpot.md) (design-inspiration, MPL-2.0): پلتفرم متن‌باز طراحی و نمونه‌سازی رابط، جایگزین Figma
+- [Refero (و Refero Styles)](catalog/refero.md) (design-inspiration, ❓ مجوز فایل‌های DESIGN.md خوانده نشد): کتابخانه‌ی مرجع UI (پولی) و ۲٬۰۰۰ سبک با فایل DESIGN.md برای عامل‌ها (بتا)
+- [EmailJS](catalog/emailjs.md) (email-domain, سرویس تجاری): فرستادن ایمیل فرم سایت مستقیم از مرورگر، بدون سرور؛ محدودیت دامنه فقط در طرح پولی
+- [Resend](catalog/resend.md) (email-domain, ❓): API ارسال ایمیل با آموزش رسمی برای Cloudflare Workers
+- [یکان‌بخ (Yekan Bakh)](catalog/yekan-bakh.md) (fonts, مجوز تجاری فونت‌ایران): فونت فارسی پولی فونت‌ایران؛ نسخه‌ی رقم فارسی دارد
+- [Headscale](catalog/headscale.md) (hosting-deploy, BSD-3-Clause): سرور کنترل متن‌باز و خودمیزبان برای Tailscale؛ VPN همکاران بدون طرح پولی Tailscale
+- [RustDesk](catalog/rustdesk.md) (hosting-deploy, AGPL-3.0): دسترسی از راه دور به دسکتاپ، با سرور خودمیزبان
+- [Tailscale](catalog/tailscale.md) (hosting-deploy, BSD-3-Clause (کلاینت)): شبکه‌ی خصوصی WireGuard بین دستگاه‌ها برای دسترسی امن به سرورها بدون پورت باز
+- [Uptime Kuma](catalog/uptime-kuma.md) (hosting-deploy, MIT): پایش خودمیزبان در دسترس بودن سایت و سرویس با هشدار
+- [Logo Design Skill (kaankiziltug)](catalog/logo-design-skill.md) (icons-logos, MIT (code and guidance; the 1,432 reference logos are third-party trademarks, not covered)): skill طراحی لوگو برای Claude Code از بریف تا فایل نهایی SVG؛ سه کانسپت، آزمون ۱۶ پیکسل و تک‌رنگ، تخته‌ی ارائه، نسخه‌های favicon و آیکون اپ؛ کتابخانه‌ی مرجع ۱٬۴۳۲ لوگوی واقعی
+- [awesome-gpt-image-2](catalog/awesome-gpt-image-2.md) (image-generation, MIT): کتابخانه‌ی ۵۳۰+ نمونه و ۲۰+ قالب پرامپت GPT Image
+- [ComfyUI](catalog/comfyui.md) (image-generation, GPL-3.0): محیط گره‌ای ساخت تصویر، ویدیو و صدا با مدل‌های محلی
+- [Recraft](catalog/recraft.md) (image-generation, شرایط Recraft): تولید تصویر و وکتور با API؛ فقط طرح پولی برای کار تجاری
+- [Cloudflare Workers AI](catalog/cloudflare-workers-ai.md) (local-ai, سرویس تجاری؛ هر مدل مجوز خودش را دارد): مدل‌های باز (gpt-oss، Llama 4، Kimi، GLM، Qwen، Gemma، bge-m3) روی GPUهای Cloudflare؛ برای پاسخ چندزبانه با زمینه‌ی بلند از Claude Haiku 5.5 ارزان‌تر نیست
+- [Google AI Edge Gallery](catalog/google-ai-edge-gallery.md) (local-ai, Apache-2.0): اپ رسمی گوگل برای اجرای مدل‌های Gemma روی گوشی، آفلاین
+- [awesome-ai-agents](catalog/awesome-ai-agents.md) (research-tools, MIT): فهرست فعال بیش از ۳۰۰ منبع عامل هوش مصنوعی در دسته‌بندی؛ برای کشف، نه رتبه‌بندی
+- [Google NotebookLM (Gemini Notebook)](catalog/notebooklm.md) (research-tools, سرویس گوگل): دستیار تحقیق گوگل روی منابع خودت (PDF، لینک، ویدیو) با خلاصه‌ی صوتی
+- [PostHog](catalog/posthog.md) (research-tools, MIT (بیشتر کد)): تحلیل محصول با حالت کاملاً ناشناس و ابر اروپا
+- [Trendshift](catalog/trendshift.md) (research-tools, سرویس رایگان با تبلیغ): مخزن‌های پرطرفدار گیت‌هاب به تفکیک روز، هفته، ماه، سال و موضوع
+- [blutter](catalog/blutter.md) (reverse-engineering, MIT): بازخوانی کد Dart از اپ Flutter کامپایل‌شده (libapp.so)
+- [Ghidra](catalog/ghidra.md) (reverse-engineering, Apache-2.0): دیس‌اسمبلر و دیکامپایلر باینری بومی از NSA
+- [jadx](catalog/jadx.md) (reverse-engineering, Apache-2.0): دیکامپایلر APK و DEX به کد جاوا برای دیدن اپ Android خودمان
+- [mitmproxy](catalog/mitmproxy.md) (reverse-engineering, MIT): پراکسی برای دیدن و بررسی ترافیک HTTPS اپ و سایت
+- [MobSF](catalog/mobsf.md) (reverse-engineering, GPL-3.0): اسکن خودکار امنیتی APK، AAB و IPA (ایستا و پویا)
+- [Claude SEO](catalog/claude-seo.md) (seo-search, MIT): مجموعه‌ی مهارت و دستور سئو برای Claude Code (بررسی فنی، محتوا، اسکیما، سئوی محلی و هوش مصنوعی)
+- [OpenSEO](catalog/open-seo.md) (seo-search, MIT): جایگزین متن‌باز Ahrefs و Semrush؛ خودمیزبان، ولی داده را از DataForSEO پولی می‌گیرد
+- [emdash](catalog/emdash-cms.md) (site-generators, MIT): CMS تایپ‌اسکریپتی بر پایه‌ی Astro برای Cloudflare یا Node
+- [Instatic](catalog/instatic.md) (site-generators, MIT): سازنده‌ی سایت و CMS بصری خودمیزبان با عامل هوش مصنوعی
+- [nimbus](catalog/cloudflare-nimbus.md) (site-generators, MIT): ابزار مستندات Astro از Cloudflare با خروجی HTML برای انسان و Markdown برای ایجنت
+- [Metricool](catalog/metricool.md) (social-publishing, سرویس تجاری): زمان‌بندی و آمار شبکه‌ها با MCP حتی در طرح رایگان
+- [OpenReply](catalog/openreply.md) (social-publishing, MIT): خودکارسازی «کامنت کلیدواژه ← دایرکت» اینستاگرام با API رسمی Meta؛ جایگزین خودمیزبان ManyChat
+- [Create Expo Stack](catalog/create-expo-stack.md) (templates, MIT): CLI ساخت اپ Expo با انتخاب ناوبری، سبک و پشتیبان.
+- [Ignite](catalog/ignite.md) (templates, MIT (بسته‌ی npm)): قالب و CLI آماده‌ی اپ React Native از Infinite Red.
+- [21st.dev](catalog/21st-dev.md) (ui-components, هر کامپوننت جدا): بازارچه‌ی کامپوننت‌های React جامعه، با MCP برای Claude
+- [Aceternity UI](catalog/aceternity-ui.md) (ui-components, شرایط سایت (متن‌باز نیست)): کامپوننت‌ها و بلوک‌های متحرک Next.js با Framer Motion؛ بخش بزرگی پولی
+- [Bottom Sheet (gorhom)](catalog/gorhom-bottom-sheet.md) (ui-components, MIT): برگه‌ی پایین تعاملی برای React Native.
+- [CanvasUI](catalog/canvasui.md) (ui-components, MIT + Commons Clause v1.0): ۳۵ افکت با HTML-in-canvas و WebGL/WebGPU؛ مجوز MIT با Commons Clause
+- [cn](catalog/shadcn-cn.md) (ui-components, MIT): جایگزین بدون وابستگی برای clsx و tailwind-merge با همان API
+- [Fancy Components](catalog/fancy-components.md) (ui-components, MIT): کامپوننت‌ها و افکت‌های متحرک خلاقانه برای React (متن، تصویر، فیزیک)
+- [FlashList](catalog/flash-list.md) (ui-components, MIT): فهرست پرکارایی Shopify برای React Native.
+- [Google Stitch](catalog/google-stitch.md) (ui-components, سرویس گوگل (حساب گوگل)): ابزار گوگل برای طراحی رابط با هوش مصنوعی و گرفتن کد آن
+- [HeroUI Native](catalog/heroui-native.md) (ui-components, Apache-2.0): کتابخانه‌ی کامپوننت React Native از HeroUI.
+- [Legend List](catalog/legend-list.md) (ui-components, MIT): فهرست پرکارایی برای React Native و React.
+- [lint](catalog/shadcn-lint.md) (ui-components, MIT): لینتر ESLint/Oxlint برای قواعد دیزاین‌سیستم Tailwind v4 با پیام مناسب ایجنت
+- [MicroKit](catalog/microkit.md) (ui-components, MIT): ۵۰ ریزتعامل React و CSS، نصب با shadcn
+- [NativeWind](catalog/nativewind.md) (ui-components, MIT): Tailwind CSS در React Native.
+- [React Native Reusables](catalog/react-native-reusables.md) (ui-components, MIT): نسخه‌ی shadcn/ui برای React Native با NativeWind یا Uniwind.
+- [screenshot-to-code](catalog/screenshot-to-code.md) (ui-components, MIT): تبدیل تصویر صفحه به HTML، Tailwind یا React با کلید API خودت
+- [Tamagui](catalog/tamagui.md) (ui-components, MIT): سبک‌دهی و UI مشترک برای React Native و وب.
+- [Uniwind](catalog/uniwind.md) (ui-components, MIT): اتصال Tailwind به React Native از سازندگان Unistyles.
+- [ClaudeAnimationBase](catalog/claude-animation-base.md) (video, MIT): پایه‌ی آماده برای کارتون دست‌نقاشی با p5.js و راهنمای مدل؛ MIT
+- [ffmpeg-skill](catalog/ffmpeg-skill.md) (video, MIT): مهارت و سرور MCP برای ویرایش ویدیو با FFmpeg محلی: برش، حذف سکوت، زیرنویس، تناسب ۹:۱۶
+- [Google Veo 3.1 و Gemini Omni Flash](catalog/google-veo.md) (video, شرایط Gemini API): مدل‌های تولید ویدیو Google در Gemini API با صدای بومی (Veo)
+- [Hedra Character-3](catalog/hedra.md) (video, سرویس پولی؛ حق تجاری ❓): ساخت ویدیوی سخن‌گو از یک عکس و یک فایل صدا، تا ۱۰ دقیقه، از ۲٫۵ سنت در ثانیه؛ بهترین کیفیت به‌ازای دلار در اکتبر ۲۰۲۶
+- [InfiniteTalk](catalog/infinitetalk.md) (video, Apache-2.0): مدل بازوزن Apache-2.0 عکس + صدا به ویدیوی سخن‌گو با طول نامحدود؛ روی molab آزموده شد (۶ ثانیه در حدود ۳۰ دقیقه)
+- [Kandinsky 6.0 Video](catalog/kandinsky-6.md) (video, MIT (کد و وزن‌های Diffusers)): مدل متن‌باز MIT ویدیوی ۵ ثانیه‌ای با صدای هم‌زمان و لب‌همخوانی؛ Lite ۳ میلیاردی و Pro ۲۹ میلیاردی؛ کمینه‌ی آزموده‌شده کارت ۱۶ گیگ
+- [Lemo Opuscar](catalog/lemo-opuscar.md) (video, MIT (کد) · CC BY 4.0 (فیلم‌های نمونه)): افزونه‌ی Claude Code با ۵۱ سبک فیلم کوتاه که فقط با کد ساخته می‌شوند، بدون مدل ویدیو
+- [Luma Ray](catalog/luma-ray.md) (video, شرایط Luma): مدل ویدیو Luma (Ray3.2) با قیمت هر کلیپ
+- [Mediabunny](catalog/mediabunny.md) (video, MPL-2.0): خواندن، نوشتن و تبدیل ویدیو و صدا در مرورگر با TypeScript خالص
+- [MoneyPrinterTurbo](catalog/moneyprinterturbo.md) (video, MIT): از یک موضوع، ویدیوی کوتاه کامل می‌سازد: متن با مدل زبانی، فیلم آرشیوی، گفتار، زیرنویس
+- [Motion Graphics (Barty-Bart)](catalog/barty-motion-graphics.md) (video, MIT): شش اسکیل رایگان تدوین: موشن روی گفتار، جداسازی محلی سوژه، ویدیوی معرفی و افکت صوتی زمان‌بندی‌شده
+- [Motion Graphics Skill Pack (Charlie Hills)](catalog/motion-graphics-skills.md) (video, MIT): بسته‌ی رایگان MIT با ۱۵ اسکیل Claude Code برای موشن‌گرافیک با کد (ویدیوی معرفی، نمودار متحرک، تیتراژ سه‌بعدی، ریل)؛ رندر MP4 با HyperFrames؛ بدون پشتیبانی فارسی یا راست‌به‌چپ
+- [Recordly](catalog/recordly.md) (video, AGPL-3.0): ضبط صفحه برای ویدیوی دمو، با زوم و افکت خودکار
+- [Runway](catalog/runway.md) (video, شرایط Runway): تولید و ویرایش ویدیو؛ API که مدل‌های دیگران (Veo، Kling، Seedance) را هم می‌دهد
+- [video-use (browser-use)](catalog/video-use.md) (video, MIT): مهارت Claude Code برای تدوین فیلم خام: حذف مکث و «اِ»، رنگ، زیرنویس، انیمیشن با HyperFrames/Remotion؛ ولی متن‌برداری فقط با ElevenLabs Scribe پولی و زیرنویس پیش‌فرض لاتین
+- [Wan 2.2 S2V (عکس + صدا به ویدیو)](catalog/wan-2-2-s2v.md) (video, Apache-2.0): مدل بازوزن Apache-2.0 Wan2.2-S2V-14B عکس + صدا به ویدیوی سخن‌گو؛ روی molab آزموده شد (۶ ثانیه در حدود ۴۵ دقیقه، ۵۴ تا ۵۶ گیگ)
+- [whatships](catalog/whatships.md) (video, ویدیوها مال صاحبانشان): فهرست بیش از ۲٬۰۰۰ ویدیوی لانچ استارتاپ از X؛ رایگان و متن‌باز
+
+### Hold (⛔ do not use)
+- [Chat On Steroids](catalog/chat-on-steroids.md) (agents-memory, MIT): دسترسی ChatGPT وب به فایل و ترمینال از راه تونل عمومی؛ نصب‌کننده‌ی امضانشده
+- [codegraph](catalog/codegraph.md) (agents-memory, MIT): گراف کد محلی برای ابزارهای کدنویسی؛ تله‌متری پیش‌فرض روشن است
+- [Liquid Glass (samasante)](catalog/liquid-glass.md) (animation, ❓ پیدا نشد): لنز شیشه‌ای React که صفحه را می‌شکند؛ بدون مخزن و مجوز
+- [.NET MAUI](catalog/dotnet-maui.md) (app-frameworks, MIT): فریم‌ورک چندسکویی Microsoft با C# برای Android، iOS، Windows و macOS
+- [ios-simulator-mcp](catalog/ios-simulator-mcp.md) (app-testing, MIT): MCP شخصی برای کنترل شبیه‌ساز iOS
+- [OpenFile](catalog/openfile.md) (assets-media, MIT): ابزارهای فایل در مرورگر با WebAssembly؛ پروژه‌ی تک‌نفره‌ی دوروزه با ادعای بازاریابی، نگه‌داشته شد
+- [Hume Octave](catalog/hume.md) (audio-voice, —): تبدیل متن به گفتار با احساس؛ API آن ۲۰۲۶-۱۱-۱۳ بسته می‌شود؛ رویش نساز
+- [OpenAI TTS](catalog/openai-tts.md) (audio-voice, شرایط OpenAI): تبدیل متن به گفتار OpenAI؛ مدل‌های tts-1 و gpt-4o-mini-tts در ۲۰۲۷-۰۱-۰۶ بسته می‌شوند
+- [stable-ts](catalog/stable-ts.md) (audio-voice, MIT): هم‌ترازی و زیرنویس کلمه‌به‌کلمه بر پایه‌ی Whisper؛ بایگانی شده از ۲۰۲۶-۰۵-۳۰
+- [Udio](catalog/udio.md) (audio-voice, —): ساخت آهنگ؛ دانلود از اکتبر ۲۰۲۵ در همه‌ی طرح‌ها بسته است؛ برای ریلز بی‌فایده
+- [voicebox](catalog/voicebox.md) (audio-voice, MIT): استودیوی صدای محلی با چند موتور TTS و کلون صدا؛ نیازمند رضایت
+- [VoiceStudio](catalog/voicestudio.md) (audio-voice, برنامه AGPL-3.0؛ مدل‌ها جدا (چندتا غیرتجاری)): جایگزین محلی ElevenLabs؛ موتور پیش‌فرض با وزن‌های غیرتجاری
+- [BackstopJS](catalog/backstopjs.md) (browser-testing, MIT): تست رگرسیون تصویری؛ نگهدارنده ندارد
+- [Carbonyl](catalog/carbonyl.md) (browser-testing, BSD-3-Clause): مرورگر Chromium که صفحه را داخل ترمینال نقاشی می‌کند؛ از ۲۰۲۳ رها شده و روی Chromium 111 مانده
+- [CC Switch](catalog/cc-switch.md) (claude-code-tooling, MIT): برنامه‌ی رومیزی برای جابه‌جایی ارائه‌دهنده‌ی API و مدیریت تنظیمات Claude Code، Codex و Gemini؛ نگه‌داشته شد به‌خاطر ریسک اشتراک و تبلیغ رله
+- [cedr](catalog/cedr.md) (claude-code-tooling, Apache-2.0): CLI بتای Rust (Apache-2.0) که کار را به عامل و مدل مناسب مسیریابی می‌کند، بازبینی چند فروشنده را در یک دروازه ادغام می‌کند و skill و MCP را با قفل پین می‌کند
+- [Hao0321 social-post](catalog/hao0321-social-post.md) (claude-code-tooling, MIT): مهارت «یادگیری صدای شما و انتشار» در FB/IG/Threads/X از راه Chrome واردشده؛ مستند چینی (سنتی) و وابسته به Codex؛ استفاده نکن
+- [Humanizer (skill)](catalog/humanizer.md) (claude-code-tooling, MIT): skill حذف الگوهای متن ماشینی؛ برای فارسی خطرناک است
+- [inssist MCP](catalog/inssist-mcp.md) (claude-code-tooling, MIT): سرور MCP اینستاگرام (DM، انتشار، استوری، حذف دنبال‌کننده) داخل نشست واردشده از راه افزونه‌ی Chrome شخص ثالث؛ استفاده نکن
+- [Jev / jev-guard](catalog/jev-guard.md) (claude-code-tooling, MIT): hook شخص ثالث که هر دستور و خروجی ابزار را برای امتیازدهی به سرویس بیرونی می‌فرستد؛ پیش‌فرض باز در خطا
+- [mantis](catalog/google-mantis.md) (claude-code-tooling, Apache-2.0): مهارت‌ها و هارنس برای مدل‌سازی تهدید و پژوهش آسیب‌پذیری؛ کد تولیدشده را اجرا می‌کند
+- [No AI Slop (skill)](catalog/no-ai-slop.md) (claude-code-tooling, MIT): skill حذف الگوهای متن ماشینی انگلیسی؛ برای فارسی مناسب نیست
+- [Oh My Claude Code (oh-my-claudecode)](catalog/oh-my-claude-code.md) (claude-code-tooling, MIT): افزونه‌ی شخص ثالث برای هماهنگی چند عامل؛ hook روی همه‌ی رویدادها و بازنویسی CLAUDE.md
+- [Ootto content skills](catalog/ootto-content-skills.md) (claude-code-tooling, MIT): مجموعه‌ی مهارت محتوا و ویرالیتی ریل اینستاگرام با «کارخانه‌ی محتوا» (روزی ۳ پست) و پاسخ خودکار کامنت و DM؛ استفاده نکن
+- [remake](catalog/remake.md) (claude-code-tooling, MIT): skill/افزونه‌ی Claude Code که هر سایت را پیکسل‌به‌پیکسل بازسازی می‌کند، روی GitHub و Vercel خودت می‌گذارد و حتی سورس‌مپ سایت اصلی را ذخیره می‌کند
+- [T3 Code](catalog/t3code.md) (claude-code-tooling, MIT): اپ وب و دسکتاپ و موبایل متن‌باز (MIT) از Ping/T3 برای کنترل عامل‌های کدنویسی روی رایانه‌ی خودت: Claude Code، Codex، Cursor، OpenCode و…
+- [watermarks-remover](catalog/watermarks-remover.md) (claude-code-tooling, MIT): skill حذف واترمارک متن هوش مصنوعی با بازنویسی؛ برای فارسی خطرناک
+- [9Router](catalog/9router.md) (cost-tokens, MIT): روتر محلی که اشتراک Claude Code و Codex و طرح‌های رایگان را پشت هم می‌چیند؛ توکن‌ها را نگه می‌دارد
+- [jcodemunch-mcp](catalog/jcodemunch-mcp.md) (cost-tokens, اختصاصی Dual-Use v1.1 (تجاری پولی)): فهرست کد با AST و خواندن فقط یک تابع؛ برای هر کار تجاری مجوز پولی لازم است
+- [OmniRoute](catalog/omniroute.md) (cost-tokens, MIT): دروازه‌ی جمع کردن طرح‌های رایگان صدها ارائه‌دهنده‌ی مدل؛ کلیدها از آن رد می‌شوند و ممکن است قوانین ارائه‌دهنده را بشکند
+- [Auth.js (NextAuth.js)](catalog/authjs.md) (database-backend, ISC): کتابخانه‌ی قدیمی ورود برای Next.js؛ از ۲۰۲۵-۰۹ بخشی از Better Auth و فقط وصله‌ی امنیتی می‌گیرد؛ برای پروژه‌ی تازه نه
+- [Lemon Squeezy](catalog/lemon-squeezy.md) (database-backend, شرایط سرویس): پلتفرم فروش با API مجوز داخلی؛ فهرست کشورهای پشتیبانی‌شده ایران را ندارد
+- [Lucia](catalog/lucia.md) (database-backend, MIT): کتابخانه‌ی نشست TypeScript که مارس ۲۰۲۵ کنار گذاشته شد؛ امروز فقط منبع آموزشی برای ساخت نشست با دست
+- [Paddle](catalog/paddle.md) (database-backend, شرایط سرویس): پلتفرم فروش (Merchant of Record)؛ ایران را پشتیبانی نمی‌کند
+- [9Drive](catalog/9drive.md) (hosting-deploy, Apache-2.0): چسباندن چند حساب رایگان Google Drive به هم به‌عنوان «درایو نامحدود»
+- [golive-skill](catalog/golive-skill.md) (hosting-deploy, MIT): مهارت بردن اپ به production با حساب‌های خود کاربر؛ توکن‌ها plaintext ذخیره می‌شوند
+- [infinite-canvas (بوم بی‌نهایت تولید تصویر و ویدیو)](catalog/infinite-canvas.md) (image-generation, MIT): بوم بی‌نهایت متن‌باز برای تولید تصویر و ویدیو با عامل، سازگار با API شبیه OpenAI؛ README راه‌های غیررسمی (chatgpt2api، grok2api، flow2api) و حامی تبلیغاتی را پیشنهاد می‌کند
+- [Midjourney](catalog/midjourney.md) (image-generation, شرایط Midjourney): مدل تصویر محبوب بدون API رسمی
+- [Qwen-Image 2.1](catalog/qwen-image-2-1.md) (image-generation, Qwen Research License (غیرتجاری)): مدل تصویر متن‌باز Qwen؛ مجوز پژوهشی فقط غیرتجاری، پس برای کار مشتری ممنوع مگر مجوز تجاری جدا
+- [Nemotron 3.5 Transcribe](catalog/nemotron-3-5-transcribe.md) (local-ai, OpenMDW-1.1): مدل رونویسی NVIDIA با تشخیص گوینده و زمان‌بندی کلمه؛ فارسی ندارد و به GPU دیتاسنتر نیاز دارد
+- [douyin-comments](catalog/douyin-comments.md) (research-tools, none): Agent Skill استخراج کامل کامنت‌های یک ویدیوی دویین (Douyin) با تکرار درخواست‌های واقعی صفحه در Chrome واردشده؛ بدون مجوز
+- [geo-seo-claude](catalog/geo-seo-claude.md) (seo-search, MIT): مهارت سئوی موتورهای جست‌وجوی هوش مصنوعی؛ آمار بدون منبع و نصب curl|bash
+- [Later و Hootsuite](catalog/later-hootsuite.md) (social-publishing, سرویس تجاری): ابزارهای زمان‌بندی گران بدون API یا MCP دیده‌شده
+- [WAHA (WhatsApp HTTP API)](catalog/waha.md) (social-publishing, Apache-2.0): API غیررسمی واتس‌اپ؛ نقض قوانین واتس‌اپ و خطر مسدود شدن شماره
+- [MotionSites (نسخه‌ی کپی)](catalog/motionsites-clone.md) (templates, غیرمجاز): کپی غیرمجاز کتابخانه‌ی پولی motionsites.ai؛ مخزنش با DMCA بسته شد
+- [Oversight Supply](catalog/oversight-supply.md) (templates, شرایط Oversight): قالب‌های Webflow و Framer یک استودیو که به‌صورت «پرامپت آماده برای Claude» فروخته می‌شوند
+- [SceneAI](catalog/sceneai.md) (templates, شرایط SceneAI): کتابخانه‌ی پولی «پرامپت رابط» برای هیرو و لندینگ با ویدیوی پیش‌نمایش
+- [OriginKit](catalog/originkit.md) (ui-components, ❓ هیچ مجوزی دیده نشد): کتابخانه‌ی ۶۵۴ کامپوننت متحرک با ورود و تبلیغ ابزار Thrine؛ بدون مجوز
+- [RareUI](catalog/rareui.md) (ui-components, ❓): کتابخانه‌ی کامپوننت که سایتش قابل بررسی نبود
+- [Code Animation Prompts](catalog/code-animation-prompts.md) (video, custom free-sharing terms (GitHub: NOASSERTION)): ۳۴۱ پرامپت سبک انیمیشن کد و ۱۹۳ تصویر مرجع به‌شکل skill، با مجوز «اشتراک رایگان» سفارشی و منشأ مبهم تصویرها
+- [hypit](catalog/hypit.md) (video, Apache-2.0 تغییریافته): «کپی هر ویدیوی وایرال» با تعویض چهره، صدا و تصویر از راه مدل‌های پولی
+- [Jianying Editor Skill](catalog/jianying-editor-skill.md) (video, MIT (بخش pyJianYingDraft زیر Apache-2.0)): مهارت عامل برای ساخت پیش‌نویس تدوین در نسخه‌ی چینی دسکتاپ JianyingPro؛ نه CapCut بین‌المللی، نه لینوکس
+- [mp4-muxer](catalog/mp4-muxer.md) (video, MIT): کتابخانه‌ی ساخت MP4 در مرورگر؛ منسوخ
+- [onetake](catalog/onetake.md) (video, PolyForm Noncommercial): فیلم موشن با یک دوربین پیوسته، ساخته‌شده با کد؛ مجوز غیرتجاری
+- [Open Generative AI (Anil-matcha)](catalog/open-generative-ai.md) (video, MIT (کد اپ)؛ مدل‌ها از راه MuAPI با شرایط خودش): اپ رومیزی MIT شبیه «Cinema Studio» هیگزفیلد که در عمل ظاهری برای API پولی MuAPI است؛ «بی‌فیلتر»، نصب‌کننده‌ی بی‌امضا؛ اجرای محلی فقط عکس با sd.cpp و ویدیو با Wan2GP جدا
+- [OpenAI Sora](catalog/sora.md) (video, —): مدل ویدیو OpenAI؛ از API حذف شد
+- [Openvid](catalog/openvid.md) (video, PolyForm Noncommercial 1.0.0): ویرایشگر دمو و ماکاپ سه‌بعدی در مرورگر؛ مجوز غیرتجاری
+- [shipvideo](catalog/shipvideo.md) (video, بدون فایل مجوز): ساخت ویدیوی معرفی محصول از لینک یا پرامپت، که فقط روی سکوی OpenComputer سازنده کار می‌کند
+
+## Other entry points
+
+- [Full catalog with all verdicts](catalog/README.md) and [machine-readable index](catalog/index.json)
+- [Sources registry](sources/README.md) (permanent IDs S01…, next checks)
+- [Watchlist of official sources](research/watchlist.md) and [X accounts with trust ratings](research/x-accounts.md)
+- Project experience log and changelog

@@ -1,0 +1,529 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Claude Knowledge Library Radar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=Estedad:wght@500;700;800&family=Vazirmatn:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: a tech radar, the filterable tool list beside it, then documents. Bilingual: English (LTR, default) and Persian (RTL); the choice is kept per visitor. */
+:root {
+  --bg: #f6f7f5; --panel: #ffffff; --ink: #1d2422; --muted: #5d6a66; --line: #d9dfdc; --soft: #eef1ef;
+  --accent: #23665d;
+  --adopt: #1f7a4d; --trial: #2f62b0; --assess: #a86a12; --hold: #b33a32;
+  --ring1: #e9f1ec; --ring2: #edf1f7; --ring3: #f6f0e6; --ring4: #f7ebea;
+  --f-display: "Inter", "Estedad", "Vazirmatn", Tahoma, sans-serif;
+  --f-body: "Inter", "Vazirmatn", Tahoma, "Segoe UI", sans-serif;
+  --f-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #121615; --panel: #1a201e; --ink: #e6ece9; --muted: #9aa8a3; --line: #2e3734; --soft: #222a27;
+  --accent: #6cc1b2;
+  --adopt: #5fc58f; --trial: #7aa7ec; --assess: #e2a64a; --hold: #ee7b72;
+  --ring1: #17241e; --ring2: #18202b; --ring3: #261f15; --ring4: #2a1a19; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #121615; --panel: #1a201e; --ink: #e6ece9; --muted: #9aa8a3; --line: #2e3734; --soft: #222a27;
+  --accent: #6cc1b2;
+  --adopt: #5fc58f; --trial: #7aa7ec; --assess: #e2a64a; --hold: #ee7b72;
+  --ring1: #17241e; --ring2: #18202b; --ring3: #261f15; --ring4: #2a1a19; color-scheme: dark }
+* { box-sizing: border-box }
+body { background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 15px; line-height: 1.75 }
+.wrap { max-width: 1240px; margin: 0 auto; padding-inline: 20px; padding-block: 28px 48px; display: grid; gap: 28px }
+header { display: grid; gap: 6px }
+h1 { font-family: var(--f-display); font-weight: 800; font-size: clamp(1.6rem, 3.2vw, 2.3rem); margin: 0; line-height: 1.3; text-wrap: balance }
+.sub { color: var(--muted); margin: 0; max-width: 70ch }
+.meta { font-family: var(--f-mono); font-size: 12px; color: var(--muted); direction: ltr; text-align: left }
+:root[lang="fa"] .meta { text-align: right }
+:root[lang="fa"] { --f-display: "Estedad", "Vazirmatn", Tahoma, sans-serif; --f-body: "Vazirmatn", Tahoma, "Segoe UI", sans-serif }
+.top { display: flex; justify-content: space-between; align-items: start; gap: 12px; flex-wrap: wrap }
+.lang { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; overflow: hidden; background: var(--panel) }
+.lang button { font: inherit; font-size: 13px; padding: 4px 14px; border: 0; background: transparent; color: var(--ink); cursor: pointer }
+.lang button[aria-pressed="true"] { background: var(--ink); color: var(--bg) }
+.lang button:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px }
+.stats { display: flex; flex-wrap: wrap; gap: 10px }
+.stat { display: flex; align-items: baseline; gap: 8px; padding: 8px 14px; border-radius: 999px; background: var(--panel); border: 1px solid var(--line) }
+.stat b { font-family: var(--f-display); font-size: 1.15rem; font-variant-numeric: tabular-nums }
+.stat i { font-style: normal; color: var(--muted); font-size: 13px }
+.dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block }
+.v-adopt { --v: var(--adopt) } .v-trial { --v: var(--trial) } .v-assess { --v: var(--assess) } .v-hold { --v: var(--hold) }
+.dot { background: var(--v) }
+.main { display: grid; grid-template-columns: minmax(0, 520px) minmax(0, 1fr); gap: 24px; align-items: start }
+@media (max-width: 920px) { .main { grid-template-columns: minmax(0, 1fr) } }
+.radar { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 12px; position: sticky; top: calc(env(safe-area-inset-top, 0px) + 12px) }
+@media (max-width: 920px) { .radar { position: static } }
+.radar svg { width: 100%; height: auto; display: block; direction: ltr }  /* text-anchor stays physical in both languages */
+.radar text { font-family: var(--f-body); fill: var(--muted) }
+.radar svg[hidden], .stage[hidden] { display: none }
+.shapes { display: flex; gap: 4px; flex-wrap: wrap; justify-content: center; margin-bottom: 8px }
+.shapes button { font: 500 12.5px var(--f-body); color: var(--muted); background: var(--soft); border: 1px solid var(--line); border-radius: 999px; padding: 6px 12px; min-height: 32px; cursor: pointer }
+.shapes button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--panel) }
+.stage { position: relative; aspect-ratio: 1; border-radius: 10px; overflow: hidden; background: radial-gradient(circle at 50% 46%, var(--soft), transparent 68%) }
+#radar3d { display: block; width: 100%; height: 100%; touch-action: pan-y; cursor: grab; outline-offset: -2px }
+#radar3d:active { cursor: grabbing }
+.tip { position: absolute; max-width: 70%; pointer-events: none; font: 500 12.5px var(--f-body); background: var(--ink); color: var(--panel); padding: 4px 9px; border-radius: 6px; transform: translate(-50%, -135%); white-space: nowrap; overflow: hidden; text-overflow: ellipsis }
+.tip[hidden] { display: none }
+.legend { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; font-size: 13px; color: var(--muted); padding-top: 6px }
+.legend span { display: inline-flex; align-items: center; gap: 6px }
+/* Phones: the stat tiles sit right above the radar and act as its legend, so nothing below it repeats them */
+@media (max-width: 920px) {
+  .wrap { padding-inline: 14px; padding-block: 16px 36px; gap: 14px }
+  header { gap: 4px }
+  .stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; margin-top: 4px }
+  .stat { display: grid; justify-items: center; gap: 1px; padding: 6px 2px; border-radius: 10px; text-align: center }
+  .stat .dot { display: none }
+  .stat b { font-size: 1.05rem; line-height: 1.2 }
+  .stat i { font-size: 11px; line-height: 1.25 }
+  .stat.v-adopt b { color: var(--adopt) } .stat.v-trial b { color: var(--trial) } .stat.v-assess b { color: var(--assess) } .stat.v-hold b { color: var(--hold) }
+  .radar { padding: 8px }
+  .shapes { margin-bottom: 2px; gap: 3px }
+  .shapes button { padding: 5px 10px; flex: 1 1 0; white-space: nowrap }
+  .legend { display: none }
+}
+.blip { cursor: pointer; transition: opacity .2s }
+.blip.dim { opacity: .12 }
+.blip:focus-visible circle { stroke: var(--ink); stroke-width: 2.5 }
+.panel { display: grid; gap: 14px; min-width: 0 }
+.filters { display: grid; gap: 10px; background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 14px }
+.row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center }
+.row > label { font-size: 13px; color: var(--muted); min-width: 56px }
+.chip { font: inherit; font-size: 13px; padding: 4px 12px; border-radius: 999px; border: 1px solid var(--line); background: var(--soft); color: var(--ink); cursor: pointer; display: inline-flex; gap: 6px; align-items: center }
+.chip[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink) }
+.chip:focus-visible, input:focus-visible, select:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px }
+input[type=search], select { font: inherit; font-size: 14px; padding: 6px 12px; border-radius: 10px; border: 1px solid var(--line); background: var(--bg); color: var(--ink); min-width: 0; flex: 1 1 200px }
+.count { font-size: 13px; color: var(--muted) }
+.list { display: grid; gap: 10px }
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; display: grid; gap: 4px; border-inline-start: 4px solid var(--v) }
+.card h3 { margin: 0; font-family: var(--f-display); font-weight: 700; font-size: 1.02rem; display: flex; flex-wrap: wrap; gap: 8px; align-items: center }
+.card h3 a { color: inherit; text-decoration: none } .card h3 a:hover { text-decoration: underline }
+.pill { font-family: var(--f-body); font-weight: 500; font-size: 12px; padding: 1px 10px; border-radius: 999px; color: var(--v); border: 1px solid var(--v) }
+.q { font-size: 12px; color: var(--muted); border: 1px dashed var(--line); padding: 1px 8px; border-radius: 999px }
+.card p { margin: 0; color: var(--ink) }
+.facts { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 12.5px; color: var(--muted) }
+.facts .path { font-family: var(--f-mono); direction: ltr }
+/* Lists stay closed: one colour group opens at a time, and a long group scrolls inside itself */
+.searchbar { display: flex; gap: 8px; align-items: center }
+.searchbar input { flex: 1; min-width: 0; min-height: 40px }
+.searchbar .chip { flex: none; min-height: 40px; display: inline-flex; align-items: center; gap: 6px }
+.searchbar .chip b { color: var(--accent); font-variant-numeric: tabular-nums }
+.more { display: grid; gap: 10px } .more[hidden] { display: none }
+.more .row select { flex: 1 1 150px; min-width: 0; min-height: 36px }
+.group, .fold { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; overflow: hidden }
+.group { border-inline-start: 4px solid var(--v) }
+.group > summary, .fold > summary, .sub-fold > summary { list-style: none; cursor: pointer; display: flex; align-items: center; gap: 10px; min-height: 48px; padding: 8px 14px; font-family: var(--f-display); font-weight: 700 }
+.group > summary::-webkit-details-marker, .fold > summary::-webkit-details-marker, .sub-fold > summary::-webkit-details-marker, .item > summary::-webkit-details-marker { display: none }
+.group > summary b, .fold > summary b, .sub-fold > summary b { margin-inline-start: auto; color: var(--muted); font-weight: 500; font-size: 13px; font-variant-numeric: tabular-nums }
+.group > summary::after, .fold > summary::after, .sub-fold > summary::after { content: ""; width: 7px; height: 7px; border-inline-end: 2px solid var(--muted); border-block-end: 2px solid var(--muted); transform: rotate(45deg); transition: transform .15s; flex: none; margin-inline-end: 3px }
+[open] > summary::after { transform: rotate(225deg) }
+.group[hidden] { display: none }
+.items { max-height: min(62vh, 560px); overflow-y: auto; overscroll-behavior: contain; border-top: 1px solid var(--line) }
+.item + .item { border-top: 1px solid var(--line) }
+.item > summary { list-style: none; cursor: pointer; display: grid; gap: 1px; padding: 9px 14px; min-height: 44px }
+.item > summary strong { font-family: var(--f-display); font-size: .95rem; font-weight: 700; overflow: hidden; text-overflow: ellipsis; white-space: nowrap }
+.item > summary span { font-size: 12.5px; color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap }
+.item[open] > summary span { display: none }
+.item[open] { background: var(--soft) }
+.itemmore { display: grid; gap: 6px; padding: 0 14px 12px }
+.itemmore p { margin: 0 }
+.itemmore a { color: var(--accent); font-size: 13px; width: fit-content }
+.item.flash { box-shadow: inset 0 0 0 2px var(--accent) }
+.folds { display: grid; gap: 10px }
+.foldbody { padding: 0 14px 12px; display: grid; gap: 6px; max-height: min(62vh, 560px); overflow-y: auto; overscroll-behavior: contain }
+.foldbody ul { margin: 0; padding-inline-start: 18px; display: grid; gap: 6px; font-size: 14px }
+.sub-fold { border-top: 1px solid var(--line) }
+.sub-fold > summary { padding-inline: 0; min-height: 44px; font-size: .95rem; font-weight: 500 }
+button.stat { font: inherit; color: inherit; cursor: pointer }
+button.stat:focus-visible, summary:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px }
+.card.flash { box-shadow: 0 0 0 3px var(--accent) }
+section h2 { font-family: var(--f-display); font-weight: 700; font-size: 1.25rem; margin: 0 0 10px }
+.cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px }
+.box { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px; min-width: 0 }
+.box h3 { margin: 0 0 8px; font-family: var(--f-display); font-size: 1rem }
+.box ul { margin: 0; padding-inline-start: 18px; display: grid; gap: 6px }
+.doctype { font-size: 11.5px; padding: 0 8px; border-radius: 999px; background: var(--soft); color: var(--muted); margin-inline-start: 6px; white-space: nowrap }
+.due { font-family: var(--f-mono); font-size: 12px; color: var(--hold) }
+.empty { color: var(--muted); padding: 18px; text-align: center; border: 1px dashed var(--line); border-radius: 12px }
+footer { color: var(--muted); font-size: 13px; border-top: 1px solid var(--line); padding-top: 14px }
+@media (prefers-reduced-motion: reduce) { .blip { transition: none } }
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="top"><h1 data-t="title"></h1>
+      <div class="lang" role="group" aria-label="Language / زبان"><button data-lang="en" lang="en">EN</button><button data-lang="fa" lang="fa">فارسی</button></div></div>
+    <p class="sub" data-t="sub"></p>
+    <div class="meta" id="built"></div>
+    <div class="stats" id="stats"></div>
+  </header>
+
+  <div class="main">
+    <div class="radar">
+      <div class="shapes" id="shapes" role="group" data-ta="shapeLabel"></div>
+      <div class="stage" id="stage">
+        <canvas id="radar3d" tabindex="0" role="img" data-ta="radar3dLabel"></canvas>
+        <div class="tip" id="tip" hidden></div>
+      </div>
+      <svg id="radar" viewBox="0 0 600 600" role="img" data-ta="radarLabel" hidden></svg>
+      <div class="legend" id="legend"></div>
+    </div>
+
+    <div class="panel">
+      <div class="filters">
+        <div class="searchbar">
+          <input id="q" type="search" data-tp="searchPh" data-ta="search">
+          <button class="chip" id="moreBtn" aria-expanded="false" aria-controls="more"><span data-t="filters"></span><b id="activeN"></b></button>
+        </div>
+        <div class="more" id="more" hidden>
+          <div class="row" id="quadChips"></div>
+          <div class="row">
+            <select id="dom" data-ta="domain"><option value="" data-t="allDomains"></option></select>
+            <button class="chip" id="queued" aria-pressed="false" data-t="showQueued"></button>
+            <button class="chip" id="clear" data-t="clear"></button>
+          </div>
+        </div>
+      </div>
+      <div class="count" id="count" hidden></div>
+      <div class="list" id="list"></div>
+    </div>
+  </div>
+
+  <div class="folds">
+    <details class="fold"><summary><span data-t="docsTitle"></span><b id="docsN"></b></summary><div class="foldbody" id="docs"></div></details>
+  </div>
+
+  <footer data-th="footer"></footer>
+</div>
+
+<script id="data" type="application/json">__DATA__</script>
+<script>
+(function () {
+  const D = JSON.parse(document.getElementById('data').textContent);
+  // language: ?lang= link, then the visitor's saved choice, then English
+  const T = {
+    en: { title: 'Claude Knowledge Library Radar', sub: 'Verified tools, methods and sources for building websites, apps and social content with Claude Code. Each dot is a tool; the closer to the centre, the safer the bet.',
+      radarLabel: 'Tool radar by verdict and category', radar3dLabel: '3D tool radar. Drag or use the arrow keys to rotate; choose Flat for a keyboard list of tools.', shapeLabel: 'Radar shape', shapes: { sphere: 'Sphere', torus: 'Donut', hyper: 'Hyperboloid', flat: 'Flat' }, search: 'Search', searchPh: 'Name, purpose or licence…', verdict: 'Verdict', quad: 'Category', domain: 'Area',
+      allDomains: 'All areas', filters: 'Filters', clear: 'Clear', openSite: 'Open site', shownOf: (a, b) => a + ' of ' + b, showQueued: 'Show “queued for research”', docsTitle: 'Guides',
+      footer: 'Built from the tool cards in <span class="path" style="font-family:var(--f-mono)">catalog/*.md</span> by <span style="font-family:var(--f-mono)">scripts/build_dashboard.py</span> and refreshed by the daily watch. File paths are relative to the library folder.',
+      queued: 'queued for research', of: (a, b) => a + ' of ' + b + ' tools', none: 'No tools match these filters. Remove a filter.',
+      license: 'Licence', pricing: 'Price', risk: 'Risk',
+      V: { adopt: 'Adopt', trial: 'Trial', assess: 'Assess', hold: 'Hold' },
+      Q: { agents: 'Claude Code & agents', build: 'Build & code', design: 'Design & assets', media: 'Media & video' },
+      DOMS: { website: 'Websites', apps: 'Apps', 'social-media': 'Social media', 'claude-code': 'Claude Code', security: 'Security' } },
+    fa: { title: 'رادار کتابخانه‌ی دانش', sub: 'ابزارها، روش‌ها و منابع بررسی‌شده برای ساخت وبسایت، اپلیکیشن، محتوای شبکه‌های اجتماعی و کار با Claude Code. هر نقطه یک ابزار است؛ هرچه به مرکز نزدیک‌تر، مطمئن‌تر.',
+      radarLabel: 'رادار ابزارها بر اساس حکم و دسته', radar3dLabel: 'رادار سه‌بعدی ابزارها. با کشیدن یا کلیدهای جهت بچرخانید؛ برای فهرست با صفحه‌کلید «تخت» را انتخاب کنید.', shapeLabel: 'شکل رادار', shapes: { sphere: 'کره', torus: 'دونات', hyper: 'هذلولی', flat: 'تخت' }, search: 'جستجو', searchPh: 'نام، کار یا مجوز…', verdict: 'حکم', quad: 'دسته', domain: 'حوزه',
+      allDomains: 'همه‌ی حوزه‌ها', filters: 'فیلترها', clear: 'پاک کردن', openSite: 'باز کردن سایت', shownOf: (a, b) => a + ' از ' + b, showQueued: 'نمایش «در صف تحقیق»', docsTitle: 'سندها',
+      footer: 'این صفحه از کارت‌های <span class="path" style="font-family:var(--f-mono)">catalog/*.md</span> با <span style="font-family:var(--f-mono)">scripts/build_dashboard.py</span> ساخته می‌شود و با پایش روزانه به‌روز می‌شود. مسیر فایل‌ها نسبت به پوشه‌ی کتابخانه روی کامپیوتر است.',
+      queued: 'در صف تحقیق', of: (a, b) => a + ' ابزار از ' + b, none: 'هیچ ابزاری با این فیلترها پیدا نشد. یک فیلتر را بردارید.',
+      license: 'مجوز', pricing: 'قیمت', risk: 'ریسک',
+      V: { adopt: 'استفاده کن', trial: 'آزمایش کن', assess: 'زیر نظر', hold: 'استفاده نکن' },
+      Q: { agents: 'Claude Code و عامل‌ها', build: 'ساخت و کد', design: 'طراحی و منابع', media: 'رسانه و ویدیو' },
+      DOMS: { website: 'وبسایت', apps: 'اپلیکیشن', 'social-media': 'شبکه‌های اجتماعی', 'claude-code': 'Claude Code', security: 'امنیت' } }
+  };
+  let LANG = new URLSearchParams(location.search).get('lang');
+  if (!T[LANG]) { try { LANG = localStorage.getItem('kl-lang'); } catch (e) {} }
+  if (!T[LANG]) LANG = 'en';
+  const L = T[LANG], EN = LANG === 'en', X = D.en || {};
+  const root = document.documentElement;
+  root.lang = LANG; root.dir = EN ? 'ltr' : 'rtl';
+  document.title = L.title;
+  document.querySelectorAll('[data-t]').forEach(n => { n.textContent = L[n.dataset.t]; });
+  document.querySelectorAll('[data-th]').forEach(n => { n.innerHTML = L[n.dataset.th]; });
+  document.querySelectorAll('[data-tp]').forEach(n => { n.placeholder = L[n.dataset.tp]; });
+  document.querySelectorAll('[data-ta]').forEach(n => { n.setAttribute('aria-label', L[n.dataset.ta]); });
+  document.querySelectorAll('.lang button').forEach(b => {
+    b.setAttribute('aria-pressed', b.dataset.lang === LANG);
+    b.onclick = () => { try { localStorage.setItem('kl-lang', b.dataset.lang); } catch (e) {}
+      const u = new URL(location.href); u.searchParams.delete('lang'); location.replace(u); };
+  });
+  const FA = s => EN ? String(s) : String(s).replace(/\d/g, d => '۰۱۲۳۴۵۶۷۸۹'[d]);
+  const tr = (map, key, fallback) => (EN && X[map] && X[map][key]) || fallback;
+  const V = L.V;
+  const VORDER = ['adopt', 'trial', 'assess', 'hold'];
+  const QUADS = [
+    { id: 'agents', name: L.Q.agents, cats: ['claude-code-tooling','cost-tokens','browser-testing','app-testing','agents-memory','research-tools','reverse-engineering','experimental'] },
+    { id: 'build', name: L.Q.build, cats: ['ui-components','animation','3d','hosting-deploy','database-backend','local-ai','site-generators','seo-search','email-domain','app-frameworks','app-publishing'] },
+    { id: 'design', name: L.Q.design, cats: ['design-inspiration','fonts','icons-logos','templates','assets-media','image-generation'] },
+    { id: 'media', name: L.Q.media, cats: ['audio-voice','video','social-publishing'] }
+  ];
+  const quadOf = c => (QUADS.find(q => q.cats.includes(c.category)) || QUADS[0]).id;
+  const DOMS = L.DOMS;
+  const cards = D.cards.map(c => Object.assign({}, c, { quad: quadOf(c), doms: Array.isArray(c.domains) ? c.domains : [],
+    summary: tr('cards', c.slug, c.summary), license: tr('licenses', c.license, c.license) }));
+
+  document.getElementById('built').textContent = 'built ' + D.built + ' · ' + cards.length + ' cards · ' + D.documents.length + ' documents';
+
+  // stats
+  const stats = document.getElementById('stats');
+  VORDER.forEach(v => {
+    const n = cards.filter(c => c.verdict === v).length;
+    stats.insertAdjacentHTML('beforeend', `<button type="button" class="stat v-${v}" data-open="${v}"><span class="dot"></span><b>${FA(n)}</b><i>${V[v]}</i></button>`);
+  });
+  const queuedN = cards.filter(c => c.status === 'queued').length;
+  if (queuedN) stats.insertAdjacentHTML('beforeend', `<span class="stat"><b>${FA(queuedN)}</b><i>${L.queued}</i></span>`);
+
+  // radar geometry: 4 quadrants (start angles), 4 rings
+  const svg = document.getElementById('radar'), NS = 'http://www.w3.org/2000/svg', C = 300;
+  const RINGS = { adopt: [0, 125], trial: [125, 200], assess: [200, 255], hold: [255, 290] };
+  const RFILL = { adopt: 'var(--ring1)', trial: 'var(--ring2)', assess: 'var(--ring3)', hold: 'var(--ring4)' };
+  const el = (n, a) => {
+    if (n === 'text' && !EN) { a = Object.assign({}, a, { direction: 'rtl', 'text-anchor': a['text-anchor'] === 'end' ? 'start' : 'end' }); }  // Persian labels: same position, right-to-left order
+    const e = document.createElementNS(NS, n); for (const k in a) e.setAttribute(k, a[k]); return e; };
+  ['hold','assess','trial','adopt'].forEach(v => svg.appendChild(el('circle', { cx: C, cy: C, r: RINGS[v][1], fill: RFILL[v], stroke: 'var(--line)' })));
+  svg.appendChild(el('line', { x1: C, y1: 6, x2: C, y2: 594, stroke: 'var(--line)' }));
+  svg.appendChild(el('line', { x1: 6, y1: C, x2: 594, y2: C, stroke: 'var(--line)' }));
+  VORDER.forEach(v => { const t = el('text', { x: C + 4, y: C - RINGS[v][1] + 14, 'font-size': 11 }); t.textContent = V[v]; svg.appendChild(t); });
+  const QPOS = [ { a0: -90, lx: 590, ly: 20, anchor: 'end' }, { a0: 0, lx: 590, ly: 592, anchor: 'end' }, { a0: 90, lx: 10, ly: 592, anchor: 'start' }, { a0: 180, lx: 10, ly: 20, anchor: 'start' } ];
+  QUADS.forEach((q, i) => { const t = el('text', { x: QPOS[i].lx, y: QPOS[i].ly, 'font-size': 13, 'font-weight': 700, 'text-anchor': QPOS[i].anchor }); t.textContent = q.name; svg.appendChild(t); });
+  const hash = s => { let h = 2166136261; for (const ch of s) { h ^= ch.codePointAt(0); h = Math.imul(h, 16777619); } return (h >>> 0) / 4294967295; };
+  const blips = {};
+  cards.forEach(c => {
+    const qi = QUADS.findIndex(q => q.id === c.quad);
+    const [r0, r1] = RINGS[c.verdict] || RINGS.assess;
+    const a = (QPOS[qi].a0 + 8 + hash(c.slug + 'a') * 74) * Math.PI / 180;
+    const r = r0 + 10 + hash(c.slug + 'r') * Math.max(4, r1 - r0 - 20);
+    c.rr = r; c.aa = a;
+    const g = el('g', { class: 'blip v-' + c.verdict, tabindex: 0, role: 'button', 'aria-label': c.name + ' — ' + V[c.verdict] });
+    const queued = c.status === 'queued';
+    g.appendChild(el('circle', { cx: C + r * Math.cos(a), cy: C + r * Math.sin(a), r: 6.5, fill: queued ? 'var(--panel)' : `var(--${c.verdict})`, stroke: `var(--${c.verdict})`, 'stroke-width': queued ? 2 : 1 }));
+    const tt = el('title', {}); tt.textContent = c.name + ' · ' + V[c.verdict] + (queued ? ' · ' + L.queued : ''); g.appendChild(tt);
+    g.addEventListener('click', () => focusCard(c.slug));
+    g.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); focusCard(c.slug); } });
+    svg.appendChild(g); blips[c.slug] = g;
+  });
+  document.getElementById('legend').innerHTML = VORDER.map(v => `<span class="v-${v}"><span class="dot"></span>${V[v]}</span>`).join('') + (queuedN ? `<span>○ ${L.queued}</span>` : '');
+
+
+  // 3D radar: the same polar data (distance = verdict, angle = category) wrapped on a sphere, a torus or a hyperboloid. Plain canvas, no library.
+  const radar3d = (() => {
+    const cv = document.getElementById('radar3d'), stage = document.getElementById('stage'), tip = document.getElementById('tip');
+    const ctx = cv.getContext && cv.getContext('2d');
+    const still = matchMedia('(prefers-reduced-motion: reduce)');
+    const SHAPES = ['sphere', 'torus', 'hyper'];
+    const PI = Math.PI, RMAX = 290, TILT0 = 0.42, CAM = 3.4;
+    const surface = (shape, r, a) => {
+      const t = r / RMAX;
+      if (shape === 'torus') { const phi = t * 2 * PI + PI / 2, m = 0.7 + 0.34 * Math.cos(phi); return [m * Math.cos(a), 0.34 * Math.sin(phi), m * Math.sin(a)]; }
+      if (shape === 'hyper') { const v = (t - 0.5) * 2.5, s = 0.46 * Math.sqrt(1 + v * v); return [s * Math.cos(a), -v * 0.62, s * Math.sin(a)]; }
+      const th = 0.05 + t * (PI - 0.1), s = Math.sin(th) * 0.98; return [s * Math.cos(a), Math.cos(th) * 0.98, s * Math.sin(a)];
+    };
+    const line = (fn, n) => Array.from({ length: n + 1 }, (_, i) => fn(i / n));
+    const GUIDES = [];
+    Object.values(RINGS).forEach(([, r1]) => GUIDES.push({ pts: line(u => [r1, u * 2 * PI], 72), a: 0.5 }));
+    [-90, 0, 90, 180].forEach(d => GUIDES.push({ pts: line(u => [u * RMAX, d * PI / 180], 40), a: 0.28 }));
+    const cell = {};
+    const pts = [...cards].sort((a, b) => a.slug.localeCompare(b.slug)).map(c => {
+      const qi = QUADS.findIndex(q => q.id === c.quad), key = qi + c.verdict, i = cell[key] = (cell[key] || 0) + 1, [r0, r1] = RINGS[c.verdict] || RINGS.assess;
+      const a = (QPOS[qi].a0 + 6 + ((i * 0.7548777 + 0.5) % 1) * 78) * PI / 180, r = r0 + 8 + ((i * 0.5698403 + 0.5) % 1) * Math.max(4, r1 - r0 - 16);
+      return { c, r, a, v: c.verdict, queued: c.status === 'queued' };
+    });
+    const labels = QUADS.map((q, i) => ({ text: q.name, a: (QPOS[i].a0 + 45) * PI / 180, r: 162 }));
+    let sprites = {}, W = 0, H = 0, dpr = 1, ink = '#000', accent = '#000', lineCol = '#888', page = '#fff';
+    let shape = 'sphere', from = 'sphere', morph = 1, morphStart = 0;
+    let lean = 0, yaw = 0.6, tilt = TILT0, sweep = 0, shown = null, hover = null, drag = null, projected = [], last = 0, dirty = true;
+    const lerp = (p, q, k) => [p[0] + (q[0] - p[0]) * k, p[1] + (q[1] - p[1]) * k, p[2] + (q[2] - p[2]) * k];
+    const ease = k => k < 0.5 ? 4 * k * k * k : 1 - Math.pow(-2 * k + 2, 3) / 2;
+    const paintSprites = () => {
+      const cs = getComputedStyle(document.documentElement);
+      ink = cs.getPropertyValue('--ink').trim(); accent = cs.getPropertyValue('--accent').trim(); lineCol = cs.getPropertyValue('--muted').trim();
+      page = cs.getPropertyValue('--panel').trim();
+      VORDER.forEach(v => {
+        const col = cs.getPropertyValue('--' + v).trim(), s = document.createElement('canvas'); s.width = s.height = 64;
+        const g = s.getContext('2d'), rg = g.createRadialGradient(32, 32, 0, 32, 32, 32);
+        rg.addColorStop(0, col); rg.addColorStop(0.34, col); rg.addColorStop(0.4, col + '40'); rg.addColorStop(1, col + '00');
+        g.fillStyle = rg; g.fillRect(0, 0, 64, 64); sprites[v] = s;
+      });
+      dirty = true;
+    };
+    const place = p => {
+      const cy = Math.cos(yaw), sy = Math.sin(yaw), cx = Math.cos(tilt + lean), sx = Math.sin(tilt + lean);
+      const x1 = p[0] * cy + p[2] * sy, z1 = -p[0] * sy + p[2] * cy;
+      const y2 = p[1] * cx - z1 * sx, z2 = p[1] * sx + z1 * cx;
+      const k = CAM / (CAM - z2), f = Math.min(W, H) * 0.425;
+      return { x: W / 2 + x1 * k * f, y: H / 2 - y2 * k * f, z: z2, k };
+    };
+    const at = (r, a, m) => m >= 1 ? surface(shape, r, a) : lerp(surface(from, r, a), surface(shape, r, a), m);
+    const draw = now => {
+      const dt = Math.min(50, now - last); last = now;
+      if (!still.matches) { sweep += dt * 0.0011; if (!drag) yaw += dt * 0.00016; }
+      const wantLean = shape === 'torus' ? 0.4 : 0; lean = still.matches ? wantLean : lean + (wantLean - lean) * Math.min(1, dt * 0.005);
+      let m = 1;
+      if (morph < 1) { morph = still.matches ? 1 : Math.min(1, (now - morphStart) / 1100); m = ease(morph); }
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.clearRect(0, 0, W, H);
+      ctx.lineWidth = 1;
+      GUIDES.forEach(g => {
+        let prev = null;
+        g.pts.forEach(([r, a]) => {
+          const q = place(at(r, a, m));
+          if (prev) { const d = (q.z + prev.z) / 2; ctx.strokeStyle = lineCol; ctx.globalAlpha = g.a * (d > 0 ? 0.75 : 0.22); ctx.beginPath(); ctx.moveTo(prev.x, prev.y); ctx.lineTo(q.x, q.y); ctx.stroke(); }
+          prev = q;
+        });
+      });
+      if (!still.matches) {  // the radar sweep: one bright line around the shape
+        const sa = sweep % (2 * PI);
+        let prev = null; ctx.strokeStyle = accent; ctx.lineWidth = 2;
+        for (let i = 0; i <= 40; i++) { const q = place(at(i / 40 * RMAX, sa, m)); if (prev) { ctx.globalAlpha = prev.z + q.z > 0 ? 0.8 : 0.2; ctx.beginPath(); ctx.moveTo(prev.x, prev.y); ctx.lineTo(q.x, q.y); ctx.stroke(); } prev = q; }
+      }
+      projected = pts.map(p => { const q = place(at(p.r, p.a, m)); q.p = p; return q; }).sort((a, b) => a.z - b.z);
+      const sa = sweep % (2 * PI);
+      projected.forEach(q => {
+        const p = q.p, off = shown && !shown.has(p.c.slug), behind = (q.z + 1) / 2;
+        let lag = (sa - p.a) % (2 * PI); if (lag < 0) lag += 2 * PI;
+        const ping = still.matches ? 0 : Math.exp(-lag * 2.6);
+        const size = (W / 90 + W / 130 * behind + ping * W / 80) * q.k * (hover === p ? 1.8 : 1);
+        ctx.globalAlpha = off ? 0.08 : Math.min(1, 0.32 + 0.68 * behind + ping * 0.5);
+        ctx.drawImage(sprites[p.v] || sprites.assess, q.x - size, q.y - size, size * 2, size * 2);
+      });
+      ctx.globalAlpha = 0.85; ctx.fillStyle = ink; ctx.font = '600 ' + Math.max(12, W * 0.024) + 'px ' + getComputedStyle(cv).fontFamily; ctx.textAlign = 'center'; ctx.direction = EN ? 'ltr' : 'rtl'; ctx.lineJoin = 'round'; ctx.lineWidth = 5; ctx.strokeStyle = page;
+      labels.forEach(l => { const q = place(at(l.r, l.a, m)); if (q.z > 0.1) { ctx.globalAlpha = Math.min(1, (q.z - 0.1) * 6); ctx.strokeText(l.text, q.x, q.y); ctx.fillText(l.text, q.x, q.y); } });
+      ctx.globalAlpha = 1;
+      if (hover) { const q = projected.find(x => x.p === hover); if (q) { tip.style.left = Math.max(70, Math.min(W - 70, q.x)) + 'px'; tip.style.top = Math.max(30, q.y) + 'px'; } }
+      dirty = false;
+    };
+    const loop = now => {
+      const box = stage.getBoundingClientRect(), onScreen = box.bottom > 0 && box.top < innerHeight;
+      if (onScreen && !document.hidden && !stage.hidden && (!still.matches || dirty || morph < 1)) {
+        try { draw(now); } catch (e) { console.error('radar3d', e); setShape('flat', true); bar.hidden = true; return; }  // never leave an empty box
+      } else last = now;
+      requestAnimationFrame(loop);
+    };
+    const resize = () => {
+      const b = cv.getBoundingClientRect(); if (!b.width) return;
+      dpr = Math.min(window.devicePixelRatio || 1, 2); W = b.width; H = b.height; cv.width = W * dpr; cv.height = H * dpr; dirty = true;
+    };
+    const pick = e => {
+      const b = cv.getBoundingClientRect(), x = e.clientX - b.left, y = e.clientY - b.top;
+      let best = null, bd = e.pointerType === 'touch' ? 24 : 15;
+      for (let i = projected.length - 1; i >= 0; i--) { const q = projected[i]; if (q.z < -0.25 || (shown && !shown.has(q.p.c.slug))) continue; const d = Math.hypot(q.x - x, q.y - y); if (d < bd - (q.z > 0 ? 0 : 3)) { bd = d; best = q.p; } }
+      return best;
+    };
+    const setHover = p => {
+      if (p === hover) return; hover = p; dirty = true;
+      if (p) { tip.textContent = p.c.name + ' · ' + V[p.v]; tip.hidden = false; cv.style.cursor = 'pointer'; } else { tip.hidden = true; cv.style.cursor = ''; }
+    };
+    const setShape = (name, instant) => {
+      const flat = name === 'flat';
+      stage.hidden = flat; svg.hidden = !flat;
+      if (!flat && name !== shape) { from = shape; shape = name; morph = instant ? 1 : 0; morphStart = performance.now(); }
+      if (!flat) resize();
+      dirty = true;
+      document.querySelectorAll('#shapes button').forEach(b => b.setAttribute('aria-pressed', b.dataset.shape === name));
+      try { localStorage.setItem('kl-shape', name); } catch (e) {}
+    };
+    const bar = document.getElementById('shapes');
+    [...SHAPES, 'flat'].forEach(n => { const b = document.createElement('button'); b.type = 'button'; b.dataset.shape = n; b.textContent = L.shapes[n]; b.onclick = () => setShape(n); bar.appendChild(b); });
+    let saved = null; try { saved = localStorage.getItem('kl-shape'); } catch (e) {}
+    if (!ctx) { bar.hidden = true; setShape('flat', true); return { setShown() {} }; }
+    paintSprites();
+    matchMedia('(prefers-color-scheme: dark)').addEventListener('change', paintSprites);
+    new MutationObserver(paintSprites).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+    new ResizeObserver(resize).observe(stage);
+    cv.addEventListener('pointerdown', e => { drag = { x: e.clientX, y: e.clientY, yaw, tilt, moved: false }; });
+    addEventListener('pointerup', e => { if (drag && !drag.moved && e.target === cv) { const p = pick(e); if (p) focusCard(p.c.slug); } drag = null; });
+    addEventListener('pointercancel', () => { drag = null; });
+    cv.addEventListener('pointermove', e => {
+      if (drag) {
+        const dx = e.clientX - drag.x, dy = e.clientY - drag.y;
+        if (Math.abs(dx) + Math.abs(dy) > 5) { drag.moved = true; setHover(null); }
+        if (drag.moved) { yaw = drag.yaw + dx * 0.008; tilt = Math.max(-1.1, Math.min(1.1, drag.tilt + dy * 0.006)); dirty = true; }
+      } else if (e.pointerType !== 'touch') setHover(pick(e));
+    });
+    cv.addEventListener('pointerleave', () => setHover(null));
+    cv.addEventListener('keydown', e => {
+      const k = { ArrowLeft: [-0.25, 0], ArrowRight: [0.25, 0], ArrowUp: [0, -0.2], ArrowDown: [0, 0.2] }[e.key];
+      if (k) { e.preventDefault(); yaw += k[0]; tilt = Math.max(-1.1, Math.min(1.1, tilt + k[1])); dirty = true; }
+    });
+    const wanted = new URLSearchParams(location.search).get('shape') || saved;
+    setShape([...SHAPES, 'flat'].includes(wanted) ? wanted : 'sphere', true);
+    requestAnimationFrame(t => { last = t; requestAnimationFrame(loop); });
+    return { setShown(set) { shown = set; dirty = true; } };
+  })();
+
+  // filters and the verdict groups
+  const state = { q: '', quad: '', dom: '', queued: false };
+  try { const s = JSON.parse(localStorage.getItem('kl-filters') || '{}'); if (s.queued) state.queued = true; } catch (e) {}
+  const moreBtn = document.getElementById('moreBtn'), more = document.getElementById('more');
+  moreBtn.onclick = () => { more.hidden = !more.hidden; moreBtn.setAttribute('aria-expanded', !more.hidden); };
+  const qc = document.getElementById('quadChips');
+  QUADS.forEach(q => { const b = document.createElement('button'); b.className = 'chip'; b.dataset.q = q.id; b.setAttribute('aria-pressed', 'false'); b.textContent = q.name; b.onclick = () => { state.quad = state.quad === q.id ? '' : q.id; qc.querySelectorAll('.chip').forEach(x => x.setAttribute('aria-pressed', x.dataset.q === state.quad)); render(); }; qc.appendChild(b); });
+  const dom = document.getElementById('dom');
+  Object.entries(DOMS).forEach(([k, v]) => dom.insertAdjacentHTML('beforeend', `<option value="${k}">${v}</option>`));
+  dom.onchange = () => { state.dom = dom.value; render(); };
+  const search = document.getElementById('q');
+  search.oninput = e => { state.q = e.target.value.trim().toLowerCase(); render(); };
+  const qb = document.getElementById('queued');
+  qb.hidden = !queuedN;
+  qb.setAttribute('aria-pressed', state.queued);
+  qb.onclick = () => { state.queued = !state.queued; qb.setAttribute('aria-pressed', state.queued); try { localStorage.setItem('kl-filters', JSON.stringify({ queued: state.queued })); } catch (e) {} render(); };
+  const resetFilters = () => {
+    state.quad = ''; state.dom = ''; state.q = ''; dom.value = ''; search.value = '';
+    qc.querySelectorAll('.chip').forEach(x => x.setAttribute('aria-pressed', 'false'));
+  };
+  document.getElementById('clear').onclick = () => { resetFilters(); render(); };
+
+  const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[ch]));
+  const matches = c => {
+    if (!state.queued && c.status === 'queued') return false;
+    if (state.quad && c.quad !== state.quad) return false;
+    if (state.dom && !c.doms.includes(state.dom)) return false;
+    if (state.q) { const hay = (c.name + ' ' + c.summary + ' ' + c.license + ' ' + c.category).toLowerCase(); if (!hay.includes(state.q)) return false; }
+    return true;
+  };
+  const list = document.getElementById('list');
+  list.innerHTML = VORDER.map(v => `<details class="group v-${v}" name="verdict" data-v="${v}"><summary><span class="dot"></span>${V[v]}<b></b></summary><div class="items"></div></details>`).join('')
+    + `<div class="empty" id="none" hidden>${L.none}</div>`;
+  const groups = Object.fromEntries([...list.querySelectorAll('.group')].map(g => [g.dataset.v, g]));
+  let current = {};
+  const row = c => `<details class="item" id="card-${esc(c.slug)}"><summary><strong>${esc(c.name)}</strong><span>${esc(c.summary)}</span></summary>
+      <div class="itemmore"><p>${esc(c.summary)}</p>
+        <div class="facts"><span>${L.license}: ${esc(c.license || '❓')}</span><span>${L.pricing}: ${esc(c.pricing || '?')}</span><span>${L.risk}: ${esc(c.risk || '?')}</span>${c.status === 'queued' ? `<span class="q">${L.queued}</span>` : ''}<span class="path">${esc(c.file)}</span></div>
+        ${c.url && c.url.startsWith('http') ? `<a href="${esc(c.url)}" target="_blank" rel="noopener">${L.openSite}</a>` : ''}</div></details>`;
+  const fill = g => { const box = g.querySelector('.items'), want = (current[g.dataset.v] || []).map(c => c.slug).join(); if (box.dataset.for !== want) { box.innerHTML = (current[g.dataset.v] || []).map(row).join(''); box.dataset.for = want; } };
+  Object.values(groups).forEach(g => g.addEventListener('toggle', () => { if (g.open) fill(g); }));
+  function render() {
+    const shown = cards.filter(matches).sort((a, b) => a.name.localeCompare(b.name));
+    const set = new Set(shown.map(c => c.slug));
+    cards.forEach(c => blips[c.slug].classList.toggle('dim', !set.has(c.slug)));
+    radar3d.setShown(set);
+    const narrowed = !!(state.q || state.quad || state.dom), active = (state.quad ? 1 : 0) + (state.dom ? 1 : 0);
+    const cnt = document.getElementById('count');
+    cnt.hidden = !narrowed; cnt.textContent = L.of(FA(shown.length), FA(cards.length));
+    document.getElementById('activeN').textContent = active ? FA(active) : '';
+    document.getElementById('none').hidden = !!shown.length;
+    current = {};
+    VORDER.forEach(v => {
+      const g = groups[v]; current[v] = shown.filter(c => c.verdict === v);
+      const all = cards.filter(c => c.verdict === v).length, n = current[v].length;
+      g.hidden = !n; g.querySelector('summary b').textContent = narrowed ? L.shownOf(FA(n), FA(all)) : FA(n);
+      if (g.open) fill(g);
+    });
+    if (narrowed) { const first = VORDER.find(v => current[v].length); if (first && !VORDER.some(v => groups[v].open && current[v].length)) groups[first].open = true; }
+  }
+  function openGroup(v) {
+    const g = groups[v]; if (!g) return; g.hidden = false; g.open = true; fill(g);
+    g.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+  }
+  stats.querySelectorAll('[data-open]').forEach(b => { b.onclick = () => { resetFilters(); render(); openGroup(b.dataset.open); }; });
+  function focusCard(slug) {
+    const c = cards.find(x => x.slug === slug); if (!c) return;
+    if (c.status === 'queued' && !state.queued) { state.queued = true; qb.setAttribute('aria-pressed', 'true'); }
+    resetFilters(); render();
+    const g = groups[c.verdict]; g.open = true; fill(g);
+    const node = document.getElementById('card-' + slug); if (!node) return;
+    node.open = true;
+    const smooth = matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
+    g.scrollIntoView({ behavior: smooth, block: 'start' });
+    g.querySelector('.items').scrollTop = node.offsetTop - g.querySelector('.items').offsetTop;
+    node.classList.add('flash'); setTimeout(() => node.classList.remove('flash'), 1600);
+  }
+  render();
+
+  // documents grouped by domain
+  const docs = document.getElementById('docs');
+  document.getElementById('docsN').textContent = FA(D.documents.length);
+  Object.entries(DOMS).forEach(([k, v]) => {
+    const g = D.documents.filter(d => d.domain === k);
+    if (!g.length) return;
+    docs.insertAdjacentHTML('beforeend', `<details class="sub-fold" name="docs"><summary>${v}<b>${FA(g.length)}</b></summary><ul>${g.map(d => `<li>${esc(tr('docs', d.path, d.title))}${d.type ? `<span class="doctype">${esc(tr('doctypes', d.type, d.type))}</span>` : ''}</li>`).join('')}</ul></details>`);
+  });
+})();
+</script>

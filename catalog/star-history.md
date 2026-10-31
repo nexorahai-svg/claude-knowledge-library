@@ -1,0 +1,37 @@
+---
+name: Star History
+slug: star-history
+category: research-tools
+domains: [claude-code, website, apps]
+verdict: adopt
+status: researched
+summary: نمودار تاریخچه‌ی ستاره‌های مخزن‌های گیت‌هاب
+use_when: "checking a claim like X thousand stars before trusting a repo"
+how: "Open star-history.com chart for the repo: steady growth vs sudden jump (promotion or bought stars); use a GitHub token with NO scopes"
+url: https://star-history.com
+repo: "https://github.com/star-history/star-history"
+license: "MIT"
+pricing: free
+risk: low
+sources: [S57]
+found_in: [batch-02]
+last_checked: 2026-10-17
+next_check: "2027-01-15"
+---
+
+# Star History
+
+## چیست
+✅ نگهداری Bytebase. توکن گیت‌هاب «بدون هیچ دسترسی» کافی است و فقط در مرورگر می‌ماند.
+
+## کی استفاده کنیم
+🧭 پیش از اعتماد به ادعای «X هزار ستاره»: رشد پیوسته یا جهش ناگهانی (تبلیغ، ستاره‌ی خریداری‌شده).
+
+## قیمت و مجوز
+✅ رایگان، کد باز.
+
+## ریسک و هشدار
+توکن را بدون scope بساز.
+
+## مرتبط
+[فهرست پایش](../research/watchlist.md) · [سنجش ادعاهای عددی](../research/claim-testing.md) · [S57](../sources/README.md#s57)

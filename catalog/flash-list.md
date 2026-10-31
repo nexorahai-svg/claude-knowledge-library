@@ -1,0 +1,37 @@
+---
+name: FlashList
+slug: flash-list
+category: ui-components
+domains: [apps]
+verdict: trial
+status: researched
+summary: فهرست پرکارایی Shopify برای React Native.
+use_when: "long product or feed lists in Expo"
+how: "npx expo install @shopify/flash-list; compare with Legend List on real data"
+url: https://github.com/Shopify/flash-list
+repo: "https://github.com/Shopify/flash-list"
+license: "MIT"
+pricing: free
+risk: low
+sources: [S222]
+found_in: [github-2026-10-31]
+last_checked: 2026-10-31
+next_check: "2027-01-29"
+---
+
+# FlashList
+
+## چیست
+✅ فهرست پرکارایی Shopify برای React Native. حدود 7.2k ستاره؛ نسخه‌ی npm یا وضعیت: 2.3.3. (GitHub API و npm، ۲۰۲۶-۱۰-۳۱)
+
+## کی استفاده کنیم
+در پروژه‌ی Expo یا React Native. نقش آن در [پشته‌ی Expo](../domains/apps/expo-react-native-stack.md) آمده است.
+
+## قیمت و مجوز
+مجوز: MIT.
+
+## ریسک و هشدار
+جایگزین FlatList در فهرست بلند. ❓ نزد ما در پروژه‌ی واقعی آزموده نشده است.
+
+## مرتبط
+[Expo](expo.md) · [پشته‌ی Expo](../domains/apps/expo-react-native-stack.md)
